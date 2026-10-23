@@ -101,6 +101,18 @@ Built with an enterprise design language inspired by SAP's design specification 
    - **Build output directory**: `out`
 4. Deploy site!
 
+### 3. Deploying to Cloudflare Workers
+This repository includes native Cloudflare Workers configuration via [`wrangler.jsonc`](wrangler.jsonc) and an edge worker script [`src/worker/index.ts`](src/worker/index.ts) with Cloudflare Workers Static Assets binding (`env.ASSETS`):
+```bash
+# Test Cloudflare Workers compilation & dry-run validation
+npm run build:worker
+
+# Deploy directly to Cloudflare Workers
+npx wrangler deploy
+```
+- Built with `@cloudflare/workers-types` and Wrangler 4.
+- Automatically handles edge asset serving, immutable chunk caching, security headers, and guarantees 404 routes redirect to Home (`/`).
+
 ---
 
 ## 💻 Local Development
