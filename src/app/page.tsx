@@ -674,54 +674,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─────────────────────────────────────────────────────────────
-          ZONE 7: FLAT BAND (BAND LAVENDER - #f7f4ff) - FAST FACTORY RFQ
-          Curved upper edge per SAP spec
-      ────────────────────────────────────────────────────────────── */}
-      <section
-        style={{
-          backgroundColor: 'var(--colors-band-lavender)',
-          borderTopLeftRadius: '32px',
-          borderTopRightRadius: '32px',
-          paddingTop: 'var(--spacing-band)',
-          paddingBottom: 'var(--spacing-band)',
-          marginTop: 'var(--spacing-giant)'
-        }}
-        id="rfq-direct-band"
-      >
-        <div className="container" style={{ textAlign: 'center', maxWidth: '780px' }}>
-          <div className="badge badge-blue" style={{ marginBottom: '12px', backgroundColor: 'var(--colors-canvas)' }}>
-            Direct Commercial Channel
-          </div>
-          <h2 className="sap-section-title" style={{ fontSize: '32px', marginBottom: '12px' }}>
-            Ready to Source High-Purity Silicates or Industrial Minerals?
-          </h2>
-          <p className="sap-body" style={{ color: 'var(--colors-ink-body)', marginBottom: '28px' }}>
-            Submit your required formulation, Baumé gravity, purity percentage, and destination port. Our technical sales team responds with competitive commercial terms and complete COA.
-          </p>
-
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '14px', flexWrap: 'wrap' }}>
-            <button
-              type="button"
-              onClick={() => openQuote()}
-              className="btn btn-primary"
-              style={{ minHeight: '46px', padding: '12px 28px', fontSize: '16px' }}
-              id="cta-bottom-rfq"
-            >
-              <FileText size={18} /> Request Official Commercial Quote
-            </button>
-            <a
-              href={`tel:${COMPANY_DATA.phone}`}
-              className="btn btn-outline"
-              style={{ minHeight: '46px', padding: '12px 24px', fontSize: '16px', textDecoration: 'none' }}
-              id="cta-bottom-call"
-            >
-              <Phone size={18} /> Call Factory Sales: {COMPANY_DATA.formattedPhone}
-            </a>
-          </div>
-        </div>
-      </section>
-
       {/* Product specifications dialog */}
       <ProductSpecsModal
         product={selectedProduct}

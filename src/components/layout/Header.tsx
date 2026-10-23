@@ -2,40 +2,59 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { COMPANY_DATA } from '@/data/company';
 import { useQuote } from '../quote/QuoteContext';
-import { Search, Phone, Shield, FileText, Globe, Menu, X, ArrowRight } from 'lucide-react';
+import {
+  Phone,
+  FileText,
+  Menu,
+  X,
+  ChevronDown,
+  ShieldCheck,
+  Search,
+  ArrowRight
+} from 'lucide-react';
 
 export default function Header() {
   const { openQuote, items } = useQuote();
-  const [searchQuery, setSearchQuery] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const router = useRouter();
+  const pathname = usePathname();
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      router.push(`/products?q=${encodeURIComponent(searchQuery.trim())}`);
-    }
-  };
+  const navLinks = [
+    { label: 'Overview', href: '/' },
+    { label: 'Products', href: '/products', badge: '50' },
+    { label: 'Profile & Plant', href: '/profile' },
+    { label: 'Quality & Lab', href: '/quality' },
+    { label: 'Global Exports', href: '/export' },
+    { label: 'Reviews', href: '/reviews' },
+    { label: 'Contact', href: '/contact' }
+  ];
 
   return (
-    <header style={{ width: '100%', position: 'sticky', top: 0, zIndex: 100, backgroundColor: 'var(--colors-chrome)', borderBottom: '1px solid var(--colors-border-subtle)' }}>
-      {/* 60px Top-Storey Application Frame */}
+    <header
+      style={{
+        position: 'sticky',
+        top: 0,
+        zIndex: 500,
+        backgroundColor: 'rgba(255, 255, 255, 0.98)',
+        backdropFilter: 'blur(8px)',
+        borderBottom: '1px solid var(--colors-border-subtle)',
+        width: '100%'
+      }}
+      id="main-enterprise-navbar"
+    >
       <div
+        className="container"
         style={{
-          height: '60px',
+          height: '70px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          maxWidth: '1360px',
-          margin: '0 auto',
-          padding: '0 var(--spacing-giant)',
-          gap: 'var(--spacing-wide)'
+          gap: 'var(--spacing-giant)'
         }}
       >
-        {/* Brand Lockup */}
+        {/* Brand Logo & Identification */}
         <Link
           href="/"
           style={{
@@ -45,7 +64,7 @@ export default function Header() {
             textDecoration: 'none',
             flexShrink: 0
           }}
-          id="brand-logo-link"
+          id="nav-brand-logo"
         >
           <div
             style={{
@@ -67,20 +86,20 @@ export default function Header() {
           <div>
             <div
               style={{
-                fontSize: '18px',
+                fontSize: '17px',
                 fontWeight: 700,
                 color: 'var(--colors-ink)',
-                letterSpacing: '-0.2px',
+                letterSpacing: '0.2px',
                 lineHeight: '1.2'
               }}
             >
-              {COMPANY_DATA.name}
+              AMEYAA INDUSTRIES
             </div>
             <div
               style={{
                 fontSize: '11px',
                 color: 'var(--colors-ink-meta)',
-                letterSpacing: '0.3px',
+                letterSpacing: '0.4px',
                 textTransform: 'uppercase',
                 lineHeight: '1'
               }}
@@ -90,102 +109,107 @@ export default function Header() {
           </div>
         </Link>
 
-        {/* Global Quick Search */}
-        <form
-          onSubmit={handleSearch}
+        {/* Center Navigation Links (Desktop) */}
+        <nav
           style={{
-            flex: '1 1 320px',
-            maxWidth: '460px',
-            position: 'relative',
             display: 'flex',
-            alignItems: 'center'
+            alignItems: 'center',
+            gap: '4px'
           }}
-          className="header-search-form"
+          className="desktop-nav-links"
+          aria-label="Main navigation"
         >
-          <Search
-            size={16}
-            style={{
-              position: 'absolute',
-              left: '12px',
-              color: 'var(--colors-ink-meta)'
-            }}
-          />
-          <input
-            type="search"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search Potassium Silicate, Sodium Silicate, Limestone, TiO2..."
-            style={{
-              width: '100%',
-              height: '38px',
-              paddingLeft: '36px',
-              paddingRight: '12px',
-              borderRadius: 'var(--rounded-md)',
-              border: '1px solid var(--colors-border-subtle)',
-              backgroundColor: 'var(--colors-canvas)',
-              fontSize: '14px',
-              color: 'var(--colors-ink-body)'
-            }}
-            id="global-search-input"
-          />
-        </form>
+          {navLinks.map((link) => {
+            const isActive =
+              pathname === link.href ||
+              (link.href !== '/' && pathname.startsWith(link.href));
 
-        {/* Trust Badges & Direct Hotline */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-          <div
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  padding: '8px 14px',
+                  fontSize: '14px',
+                  fontWeight: isActive ? 600 : 450,
+                  color: isActive ? 'var(--colors-primary)' : 'var(--colors-ink-body)',
+                  textDecoration: 'none',
+                  borderRadius: 'var(--rounded-sm)',
+                  backgroundColor: isActive ? 'var(--colors-band-blue)' : 'transparent',
+                  transition: 'background-color 0.15s ease, color 0.15s ease'
+                }}
+                className="nav-link-item"
+              >
+                <span>{link.label}</span>
+                {link.badge && (
+                  <span
+                    style={{
+                      fontSize: '11px',
+                      fontWeight: 600,
+                      backgroundColor: isActive ? 'var(--colors-primary)' : 'var(--colors-chrome)',
+                      color: isActive ? 'var(--colors-on-primary)' : 'var(--colors-ink-meta)',
+                      borderRadius: '10px',
+                      padding: '1px 6px'
+                    }}
+                  >
+                    {link.badge}
+                  </span>
+                )}
+              </Link>
+            );
+          })}
+        </nav>
+
+        {/* Right Actions: Direct Phone & Request Quote Button */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flexShrink: 0 }}>
+          {/* Direct Sales Hotline */}
+          <a
+            href={`tel:${COMPANY_DATA.phone}`}
             style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-end',
-              lineHeight: '1.2'
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              fontSize: '14px',
+              fontWeight: 600,
+              color: 'var(--colors-ink)',
+              textDecoration: 'none',
+              padding: '6px 10px',
+              borderRadius: 'var(--rounded-md)',
+              border: '1px solid var(--colors-border-subtle)'
             }}
-            className="header-hotline-box"
+            className="header-phone-btn"
+            id="nav-phone-call"
+            title="Call Factory Sales"
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <span className="badge badge-success" style={{ fontSize: '11px', padding: '2px 6px' }}>
-                <Shield size={10} /> TrustSEAL
-              </span>
-              <span style={{ fontSize: '12px', color: 'var(--colors-ink-meta)' }}>
-                GST: 24ACAFA0567E1ZY
-              </span>
-            </div>
-            <a
-              href={`tel:${COMPANY_DATA.phone}`}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                color: 'var(--colors-primary-deep)',
-                fontWeight: 600,
-                fontSize: '14px',
-                textDecoration: 'none'
-              }}
-              id="header-phone-link"
-            >
-              <Phone size={14} /> {COMPANY_DATA.formattedPhone}
-            </a>
-          </div>
+            <Phone size={15} color="var(--colors-primary)" />
+            <span>{COMPANY_DATA.formattedPhone}</span>
+          </a>
 
           {/* Request Quote Button */}
           <button
+            type="button"
             onClick={() => openQuote()}
             className="btn btn-primary"
             style={{
-              height: '38px',
-              padding: '8px 16px',
-              fontSize: '14px'
+              height: '42px',
+              padding: '8px 18px',
+              fontSize: '14px',
+              gap: '8px'
             }}
-            id="header-rfq-button"
+            id="nav-rfq-button"
           >
-            <FileText size={15} />
-            <span>RFQ Basket</span>
+            <FileText size={16} />
+            <span>Request Quote</span>
             {items.length > 0 && (
               <span
                 style={{
                   backgroundColor: 'var(--colors-on-primary)',
                   color: 'var(--colors-primary)',
                   borderRadius: '10px',
-                  padding: '1px 6px',
+                  padding: '1px 7px',
                   fontSize: '11px',
                   fontWeight: 700
                 }}
@@ -195,24 +219,88 @@ export default function Header() {
             )}
           </button>
 
-          {/* Mobile menu toggle */}
+          {/* Mobile Menu Hamburger */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             style={{
-              display: 'none',
               background: 'none',
               border: 'none',
               cursor: 'pointer',
-              color: 'var(--colors-ink)'
+              color: 'var(--colors-ink)',
+              padding: '6px'
             }}
-            className="mobile-toggle-btn"
-            aria-label="Toggle navigation"
+            className="mobile-menu-trigger"
+            aria-label="Toggle navigation menu"
           >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
           </button>
         </div>
       </div>
+
+      {/* Mobile Drawer Navigation */}
+      {mobileMenuOpen && (
+        <div
+          style={{
+            backgroundColor: 'var(--colors-canvas)',
+            borderTop: '1px solid var(--colors-border-subtle)',
+            padding: 'var(--spacing-giant)',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '12px',
+            boxShadow: '0 8px 20px rgba(0,0,0,0.08)'
+          }}
+          className="mobile-drawer-menu"
+        >
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setMobileMenuOpen(false)}
+              style={{
+                fontSize: '16px',
+                fontWeight: pathname === link.href ? 600 : 400,
+                color: pathname === link.href ? 'var(--colors-primary)' : 'var(--colors-ink)',
+                textDecoration: 'none',
+                padding: '8px 0',
+                borderBottom: '1px solid var(--colors-chrome)',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center'
+              }}
+            >
+              <span>{link.label}</span>
+              {link.badge && <span className="badge badge-neutral">{link.badge}</span>}
+            </Link>
+          ))}
+          <div style={{ paddingTop: '8px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            <a
+              href={`tel:${COMPANY_DATA.phone}`}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                fontSize: '15px',
+                fontWeight: 600,
+                color: 'var(--colors-primary)',
+                textDecoration: 'none'
+              }}
+            >
+              <Phone size={16} /> Direct Hotline: {COMPANY_DATA.formattedPhone}
+            </a>
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                openQuote();
+              }}
+              className="btn btn-primary"
+              style={{ width: '100%', marginTop: '6px' }}
+            >
+              <FileText size={16} /> Request Commercial Quotation
+            </button>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

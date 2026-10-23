@@ -56,6 +56,17 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* IE and Edge */
+}
+
+/* Hide scrollbars for Chrome, Safari, Edge, and Opera */
+*::-webkit-scrollbar,
+::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
 }
 
 html {
@@ -67,6 +78,8 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
 }
 
 body {
@@ -75,6 +88,8 @@ body {
   flex-direction: column;
   background-color: var(--colors-canvas);
   color: var(--colors-ink-body);
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
 }
 
 /* Typography Hierarchy from SAP Design Token Spec */
@@ -487,5 +502,21 @@ textarea:focus-visible {
 .category-card-hover:hover {
   border-color: var(--colors-primary) !important;
   background-color: #fafcfe !important;
+}
+
+.mobile-menu-trigger {
+  display: none !important;
+}
+
+@media (max-width: 1024px) {
+  .desktop-nav-links {
+    display: none !important;
+  }
+  .mobile-menu-trigger {
+    display: flex !important;
+  }
+  .header-phone-btn {
+    display: none !important;
+  }
 }
 

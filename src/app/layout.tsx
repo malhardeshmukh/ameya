@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import '@/styles/globals.css';
 import Header from '@/components/layout/Header';
-import SecondaryNav from '@/components/layout/SecondaryNav';
 import Footer from '@/components/layout/Footer';
 import FloatingContact from '@/components/layout/FloatingContact';
 import QuoteModal from '@/components/quote/QuoteModal';
@@ -43,7 +42,6 @@ export default function RootLayout({
       <body>
         <QuoteProvider>
           <Header />
-          <SecondaryNav />
           <main style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
             {children}
           </main>
