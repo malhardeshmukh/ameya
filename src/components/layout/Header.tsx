@@ -297,17 +297,17 @@ export default function Header() {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className={`mobile-menu-trigger ${mobileMenuOpen ? 'active' : ''}`}
+            aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={mobileMenuOpen}
+            id="mobile-nav-toggle-btn"
             style={{
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              color: 'var(--colors-ink)',
-              padding: '6px'
+              backgroundColor: mobileMenuOpen ? 'var(--colors-band-blue)' : undefined,
+              borderColor: mobileMenuOpen ? 'var(--colors-primary)' : undefined,
+              color: mobileMenuOpen ? 'var(--colors-primary)' : undefined
             }}
-            className="mobile-menu-trigger"
-            aria-label="Toggle navigation menu"
           >
-            {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
@@ -635,7 +635,7 @@ export default function Header() {
           style={{
             backgroundColor: 'var(--colors-canvas)',
             borderTop: '1px solid var(--colors-border-subtle)',
-            padding: 'var(--spacing-giant)',
+            padding: '16px 20px',
             display: 'flex',
             flexDirection: 'column',
             gap: '10px',
