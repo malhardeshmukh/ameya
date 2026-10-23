@@ -4,20 +4,13 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { COMPANY_DATA } from '@/data/company';
-import { useQuote } from '../quote/QuoteContext';
 import {
   Phone,
-  FileText,
   Menu,
-  X,
-  ChevronDown,
-  ShieldCheck,
-  Search,
-  ArrowRight
+  X
 } from 'lucide-react';
 
 export default function Header() {
-  const { openQuote, items } = useQuote();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
@@ -83,7 +76,7 @@ export default function Header() {
           >
             A
           </div>
-          <div>
+          <div style={{ minWidth: 0 }}>
             <div
               style={{
                 fontSize: '17px',
@@ -92,6 +85,7 @@ export default function Header() {
                 letterSpacing: '0.2px',
                 lineHeight: '1.2'
               }}
+              className="header-brand-title"
             >
               AMEYAA INDUSTRIES
             </div>
@@ -103,6 +97,7 @@ export default function Header() {
                 textTransform: 'uppercase',
                 lineHeight: '1'
               }}
+              className="header-brand-subtitle"
             >
               Chemicals & Minerals • Ahmedabad
             </div>
@@ -163,7 +158,7 @@ export default function Header() {
           })}
         </nav>
 
-        {/* Right Actions: Direct Phone & Request Quote Button */}
+        {/* Right Actions: Direct Phone Hotline & Mobile Menu Hamburger */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flexShrink: 0 }}>
           {/* Direct Sales Hotline */}
           <a
@@ -187,37 +182,6 @@ export default function Header() {
             <Phone size={15} color="var(--colors-primary)" />
             <span>{COMPANY_DATA.formattedPhone}</span>
           </a>
-
-          {/* Request Quote Button */}
-          <button
-            type="button"
-            onClick={() => openQuote()}
-            className="btn btn-primary"
-            style={{
-              height: '42px',
-              padding: '8px 18px',
-              fontSize: '14px',
-              gap: '8px'
-            }}
-            id="nav-rfq-button"
-          >
-            <FileText size={16} />
-            <span>Request Quote</span>
-            {items.length > 0 && (
-              <span
-                style={{
-                  backgroundColor: 'var(--colors-on-primary)',
-                  color: 'var(--colors-primary)',
-                  borderRadius: '10px',
-                  padding: '1px 7px',
-                  fontSize: '11px',
-                  fontWeight: 700
-                }}
-              >
-                {items.length}
-              </span>
-            )}
-          </button>
 
           {/* Mobile Menu Hamburger */}
           <button
@@ -283,21 +247,12 @@ export default function Header() {
                 fontSize: '15px',
                 fontWeight: 600,
                 color: 'var(--colors-primary)',
-                textDecoration: 'none'
+                textDecoration: 'none',
+                padding: '8px 0'
               }}
             >
               <Phone size={16} /> Direct Hotline: {COMPANY_DATA.formattedPhone}
             </a>
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                openQuote();
-              }}
-              className="btn btn-primary"
-              style={{ width: '100%', marginTop: '6px' }}
-            >
-              <FileText size={16} /> Request Commercial Quotation
-            </button>
           </div>
         </div>
       )}

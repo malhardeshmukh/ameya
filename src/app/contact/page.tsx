@@ -211,7 +211,7 @@ export default function ContactPage() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '14px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '14px' }} className="contact-form-row-2">
                     <div>
                       <label htmlFor="contact-name" className="sap-caption" style={{ display: 'block', marginBottom: '4px', fontWeight: 500 }}>
                         Full Name *
@@ -243,7 +243,7 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '14px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '14px' }} className="contact-form-row-2">
                     <div>
                       <label htmlFor="contact-phone" className="sap-caption" style={{ display: 'block', marginBottom: '4px', fontWeight: 500 }}>
                         Mobile / WhatsApp *

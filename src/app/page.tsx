@@ -116,7 +116,7 @@ export default function HomePage() {
               </p>
 
               {/* Action Buttons */}
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginBottom: '36px' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginBottom: '36px' }} className="hero-cta-group">
                 <button
                   type="button"
                   onClick={() => openQuote()}
@@ -163,6 +163,7 @@ export default function HomePage() {
                   borderTop: '1px solid rgba(255, 255, 255, 0.2)',
                   paddingTop: '20px'
                 }}
+                className="hero-stats-grid"
               >
                 <div>
                   <div style={{ fontSize: '24px', fontWeight: 700, color: 'var(--colors-on-primary)' }}>50+</div>
@@ -575,7 +576,7 @@ export default function HomePage() {
                 <Globe2 size={20} color="var(--colors-primary)" /> Active Global Export Countries
               </h3>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px', marginBottom: '20px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px', marginBottom: '20px' }} className="active-countries-grid">
                 {COMPANY_DATA.topExportCountries.map((c) => (
                   <div
                     key={c.country}

@@ -47,6 +47,7 @@ export default function ProductSpecsModal({ product, onClose }: ProductSpecsModa
           border: '1px solid var(--colors-border-subtle)',
           padding: 'var(--spacing-max)'
         }}
+        className="modal-card-box"
       >
         {/* Header */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
@@ -134,7 +135,7 @@ export default function ProductSpecsModal({ product, onClose }: ProductSpecsModa
           </h4>
 
           {specEntries.length > 0 ? (
-            <div style={{ border: '1px solid var(--colors-border-subtle)', borderRadius: 'var(--rounded-md)', overflow: 'hidden' }}>
+            <div className="table-responsive" style={{ border: '1px solid var(--colors-border-subtle)', borderRadius: 'var(--rounded-md)', overflowX: 'auto' }}>
               <table className="sap-table">
                 <tbody>
                   {specEntries.map(([param, value]) => (

@@ -144,38 +144,40 @@ export default function ExportPage() {
                 <h3 style={{ fontSize: '18px', fontWeight: 600 }}>Export Regulatory Dossier</h3>
               </div>
 
-              <table className="sap-table" style={{ fontSize: '13px' }}>
-                <tbody>
-                  <tr>
-                    <td style={{ fontWeight: 600, width: '45%' }}>DGFT IEC Code</td>
-                    <td><strong style={{ color: 'var(--colors-primary)' }}>{COMPANY_DATA.iec}</strong></td>
-                  </tr>
-                  <tr>
-                    <td style={{ fontWeight: 600 }}>GSTIN Registration</td>
-                    <td>{COMPANY_DATA.gstin}</td>
-                  </tr>
-                  <tr>
-                    <td style={{ fontWeight: 600 }}>Primary Gateway Ports</td>
-                    <td>Kandla Port, Mundra Port (Gujarat)</td>
-                  </tr>
-                  <tr>
-                    <td style={{ fontWeight: 600 }}>Incoterms Offered</td>
-                    <td>FOB, CIF, CFR, Ex-Works</td>
-                  </tr>
-                  <tr>
-                    <td style={{ fontWeight: 600 }}>Export Share</td>
-                    <td>{COMPANY_DATA.exportPercentage}</td>
-                  </tr>
-                  <tr>
-                    <td style={{ fontWeight: 600 }}>Payment Security</td>
-                    <td>Irrevocable LC at Sight, Wire Transfer</td>
-                  </tr>
-                  <tr>
-                    <td style={{ fontWeight: 600 }}>Container Load</td>
-                    <td>20ft FCL (~24-26 MT) & LCL</td>
-                  </tr>
-                </tbody>
-              </table>
+              <div className="table-responsive">
+                <table className="sap-table" style={{ fontSize: '13px' }}>
+                  <tbody>
+                    <tr>
+                      <td style={{ fontWeight: 600, width: '45%' }}>DGFT IEC Code</td>
+                      <td><strong style={{ color: 'var(--colors-primary)' }}>{COMPANY_DATA.iec}</strong></td>
+                    </tr>
+                    <tr>
+                      <td style={{ fontWeight: 600 }}>GSTIN Registration</td>
+                      <td>{COMPANY_DATA.gstin}</td>
+                    </tr>
+                    <tr>
+                      <td style={{ fontWeight: 600 }}>Primary Gateway Ports</td>
+                      <td>Kandla Port, Mundra Port (Gujarat)</td>
+                    </tr>
+                    <tr>
+                      <td style={{ fontWeight: 600 }}>Incoterms Offered</td>
+                      <td>FOB, CIF, CFR, Ex-Works</td>
+                    </tr>
+                    <tr>
+                      <td style={{ fontWeight: 600 }}>Export Share</td>
+                      <td>{COMPANY_DATA.exportPercentage}</td>
+                    </tr>
+                    <tr>
+                      <td style={{ fontWeight: 600 }}>Payment Security</td>
+                      <td>Irrevocable LC at Sight, Wire Transfer</td>
+                    </tr>
+                    <tr>
+                      <td style={{ fontWeight: 600 }}>Container Load</td>
+                      <td>20ft FCL (~24-26 MT) & LCL</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
 
               <div style={{ marginTop: '20px' }}>
                 <button

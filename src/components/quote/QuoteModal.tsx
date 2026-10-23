@@ -64,6 +64,7 @@ export default function QuoteModal() {
           border: '1px solid var(--colors-border-subtle)',
           padding: 'var(--spacing-max)'
         }}
+        className="modal-card-box"
       >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
           <div>
@@ -229,7 +230,7 @@ export default function QuoteModal() {
             </div>
 
             {/* Buyer Contact & Requirements */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px' }} className="quote-form-grid">
               <div>
                 <label htmlFor="rfq-name" className="sap-caption" style={{ display: 'block', marginBottom: '6px', fontWeight: 500 }}>
                   Contact Person Name *

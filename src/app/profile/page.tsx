@@ -141,50 +141,52 @@ export default function ProfilePage() {
                 </h3>
               </div>
 
-              <table className="sap-table" style={{ fontSize: '13px' }}>
-                <tbody>
-                  <tr>
-                    <td style={{ fontWeight: 600, width: '45%' }}>Legal Firm Name</td>
-                    <td>{COMPANY_DATA.name}</td>
-                  </tr>
-                  <tr>
-                    <td style={{ fontWeight: 600 }}>Nature of Business</td>
-                    <td>Manufacturer, Exporter & Wholesaler</td>
-                  </tr>
-                  <tr>
-                    <td style={{ fontWeight: 600 }}>Legal Entity Status</td>
-                    <td>{COMPANY_DATA.legalStatus}</td>
-                  </tr>
-                  <tr>
-                    <td style={{ fontWeight: 600 }}>GSTIN Registration</td>
-                    <td><strong style={{ color: 'var(--colors-primary)' }}>{COMPANY_DATA.gstin}</strong></td>
-                  </tr>
-                  <tr>
-                    <td style={{ fontWeight: 600 }}>DGFT IEC Code</td>
-                    <td><strong>{COMPANY_DATA.iec}</strong></td>
-                  </tr>
-                  <tr>
-                    <td style={{ fontWeight: 600 }}>Year of Establishment</td>
-                    <td>{COMPANY_DATA.establishmentYear}</td>
-                  </tr>
-                  <tr>
-                    <td style={{ fontWeight: 600 }}>Annual Turnover</td>
-                    <td>{COMPANY_DATA.annualTurnover}</td>
-                  </tr>
-                  <tr>
-                    <td style={{ fontWeight: 600 }}>Lead Banking Partner</td>
-                    <td>{COMPANY_DATA.banker}</td>
-                  </tr>
-                  <tr>
-                    <td style={{ fontWeight: 600 }}>IndiaMART Status</td>
-                    <td><span className="badge badge-success">TrustSEAL Verified</span></td>
-                  </tr>
-                  <tr>
-                    <td style={{ fontWeight: 600 }}>Customer Satisfaction</td>
-                    <td>73% Quick Response Rate</td>
-                  </tr>
-                </tbody>
-              </table>
+              <div className="table-responsive">
+                <table className="sap-table" style={{ fontSize: '13px' }}>
+                  <tbody>
+                    <tr>
+                      <td style={{ fontWeight: 600, width: '45%' }}>Legal Firm Name</td>
+                      <td>{COMPANY_DATA.name}</td>
+                    </tr>
+                    <tr>
+                      <td style={{ fontWeight: 600 }}>Nature of Business</td>
+                      <td>Manufacturer, Exporter & Wholesaler</td>
+                    </tr>
+                    <tr>
+                      <td style={{ fontWeight: 600 }}>Legal Entity Status</td>
+                      <td>{COMPANY_DATA.legalStatus}</td>
+                    </tr>
+                    <tr>
+                      <td style={{ fontWeight: 600 }}>GSTIN Registration</td>
+                      <td><strong style={{ color: 'var(--colors-primary)' }}>{COMPANY_DATA.gstin}</strong></td>
+                    </tr>
+                    <tr>
+                      <td style={{ fontWeight: 600 }}>DGFT IEC Code</td>
+                      <td><strong>{COMPANY_DATA.iec}</strong></td>
+                    </tr>
+                    <tr>
+                      <td style={{ fontWeight: 600 }}>Year of Establishment</td>
+                      <td>{COMPANY_DATA.establishmentYear}</td>
+                    </tr>
+                    <tr>
+                      <td style={{ fontWeight: 600 }}>Annual Turnover</td>
+                      <td>{COMPANY_DATA.annualTurnover}</td>
+                    </tr>
+                    <tr>
+                      <td style={{ fontWeight: 600 }}>Lead Banking Partner</td>
+                      <td>{COMPANY_DATA.banker}</td>
+                    </tr>
+                    <tr>
+                      <td style={{ fontWeight: 600 }}>IndiaMART Status</td>
+                      <td><span className="badge badge-success">TrustSEAL Verified</span></td>
+                    </tr>
+                    <tr>
+                      <td style={{ fontWeight: 600 }}>Customer Satisfaction</td>
+                      <td>73% Quick Response Rate</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
 
               <div style={{ marginTop: '20px' }}>
                 <button

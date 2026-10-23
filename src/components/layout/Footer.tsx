@@ -211,7 +211,7 @@ export default function Footer() {
           <div>
             © {new Date().getFullYear()} {COMPANY_DATA.name}. All rights reserved. GST Registered in Gujarat, India.
           </div>
-          <div style={{ display: 'flex', gap: '16px' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px 14px', alignItems: 'center' }}>
             <span>IEC Code: {COMPANY_DATA.iec}</span>
             <span>•</span>
             <span>GSTIN: {COMPANY_DATA.gstin}</span>

@@ -280,7 +280,7 @@ export default function ReviewsPage() {
               </div>
             ) : (
               <form onSubmit={handleReviewSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '14px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '14px' }} className="review-form-row-2">
                   <div>
                     <label htmlFor="rev-author" className="sap-caption" style={{ display: 'block', marginBottom: '4px', fontWeight: 500 }}>
                       Your Name / Designation *
@@ -312,7 +312,7 @@ export default function ReviewsPage() {
                   </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '14px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '14px' }} className="review-form-row-3">
                   <div>
                     <label htmlFor="rev-location" className="sap-caption" style={{ display: 'block', marginBottom: '4px', fontWeight: 500 }}>
                       City / Country *
