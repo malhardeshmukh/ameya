@@ -19,6 +19,7 @@ export default function ProductCard({ product, onViewSpecs }: ProductCardProps) 
 
   return (
     <article
+      id={product.id}
       style={{
         backgroundColor: 'var(--colors-canvas)',
         borderRadius: 'var(--rounded-md)',
@@ -26,7 +27,8 @@ export default function ProductCard({ product, onViewSpecs }: ProductCardProps) 
         display: 'flex',
         flexDirection: 'column',
         overflow: 'hidden',
-        transition: 'border-color 0.15s ease'
+        transition: 'border-color 0.15s ease',
+        scrollMarginTop: '90px'
       }}
       className="product-card"
     >
