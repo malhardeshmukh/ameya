@@ -139,6 +139,11 @@ export default function Footer() {
                   Factory Locations & Visits
                 </Link>
               </li>
+              <li>
+                <Link href="/sitemap" style={{ color: 'var(--colors-ink-body)', textDecoration: 'none' }}>
+                  HTML Sitemap & Directory
+                </Link>
+              </li>
             </ul>
 
             <div style={{ marginTop: '20px' }}>
@@ -214,6 +219,16 @@ export default function Footer() {
             <span>IEC Code: {COMPANY_DATA.iec}</span>
             <span>•</span>
             <span>GSTIN: {COMPANY_DATA.gstin}</span>
+            <span>•</span>
+            <Link
+              href="/sitemap"
+              style={{ color: 'var(--colors-ink-meta)', textDecoration: 'none', transition: 'color 0.15s ease' }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--colors-primary)')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--colors-ink-meta)')}
+              id="footer-bottom-sitemap-link"
+            >
+              Sitemap
+            </Link>
             <span>•</span>
             <span>Secure Commercial B2B Settlement</span>
           </div>
