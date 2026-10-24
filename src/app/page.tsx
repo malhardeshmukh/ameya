@@ -75,7 +75,7 @@ export default function HomePage() {
             >
               <ShieldCheck size={16} color="#6bc0ff" />
               <span style={{ fontSize: '13px', fontWeight: 500, letterSpacing: '0.2px' }}>
-                IndiaMART TrustSEAL Verified • GSTIN: {COMPANY_DATA.gstin}
+                ISO 9001 Tested Quality • GSTIN: {COMPANY_DATA.gstin}
               </span>
             </div>
 
@@ -164,8 +164,8 @@ export default function HomePage() {
                 <div style={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.8)' }}>Export Nations</div>
               </div>
               <div>
-                <div style={{ fontSize: '28px', fontWeight: 700, color: 'var(--colors-on-primary)' }}>73%</div>
-                <div style={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.8)' }}>Fast Response Rate</div>
+                <div style={{ fontSize: '28px', fontWeight: 700, color: 'var(--colors-on-primary)' }}>100%</div>
+                <div style={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.8)' }}>Batch Tested Quality</div>
               </div>
             </div>
           </div>

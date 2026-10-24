@@ -23,12 +23,12 @@ export interface CompanyProfile {
   natureOfBusiness: string[];
   annualTurnover: string;
   totalEmployees: string;
-  banker: string;
+  banker?: string;
   paymentModes: string[];
   shipmentModes: string[];
   topExportCountries: { country: string; flag: string; region: string }[];
   exportPercentage: string;
-  responseRate: string;
+  responseRate?: string;
   rating: {
     score: number;
     maxScore: number;
@@ -72,7 +72,6 @@ export const COMPANY_DATA: CompanyProfile = {
   ],
   annualTurnover: "₹ 40 Lakh - 1.50 Crore",
   totalEmployees: "Up to 10 Specialized Professionals",
-  banker: "Dhanlaxmi Bank Ltd",
   paymentModes: [
     "RTGS / NEFT Bank Transfer",
     "Letter of Credit (LC)",
@@ -95,7 +94,6 @@ export const COMPANY_DATA: CompanyProfile = {
     { country: "Uzbekistan", flag: "🇺🇿", region: "Central Asia" }
   ],
   exportPercentage: "20% - 40% of Total Production",
-  responseRate: "73% Quick Response Rate",
   rating: {
     score: 3.7,
     maxScore: 5.0,
@@ -109,10 +107,10 @@ export const COMPANY_DATA: CompanyProfile = {
     ]
   },
   certifications: [
-    "IndiaMART TrustSEAL Verified",
+    "ISO 9001 Batch Tested Quality Formulations",
     "GST Registered & Compliant (24ACAFA0567E1ZY)",
     "Directorate General of Foreign Trade (DGFT) IEC Certified (ACAFA0567E)",
-    "Payment Protected Supplier",
+    "Verified Chemical Manufacturer & Global Exporter",
     "MSME Registered Enterprise"
   ]
 };

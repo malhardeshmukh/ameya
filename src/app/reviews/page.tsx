@@ -65,7 +65,7 @@ export default function ReviewsPage() {
             Verified Client Reviews & Rating Breakdown
           </h1>
           <p className="sap-body" style={{ color: 'rgba(255, 255, 255, 0.88)', maxWidth: '720px' }}>
-            Direct commercial buyer satisfaction feedback verified through our IndiaMART TrustSEAL and international trade transactions.
+            Direct commercial buyer satisfaction feedback verified through our client purchase orders and international trade transactions.
           </p>
         </div>
       </section>
@@ -104,7 +104,7 @@ export default function ReviewsPage() {
               </div>
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', marginTop: '6px' }}>
                 <ShieldCheck size={14} color="var(--colors-success)" />
-                <span style={{ fontSize: '12px', color: 'var(--colors-success)', fontWeight: 600 }}>TrustSEAL Verified</span>
+                <span style={{ fontSize: '12px', color: 'var(--colors-success)', fontWeight: 600 }}>Verified Trade Clients</span>
               </div>
             </div>
 

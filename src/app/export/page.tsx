@@ -29,7 +29,7 @@ export default function ExportPage() {
     {
       step: '02',
       title: 'Payment & Contract Finalization',
-      description: 'Secured transactions via Irrevocable Letter of Credit (LC) at sight or TT wire transfer through Dhanlaxmi Bank Ltd.'
+      description: 'Secured transactions via Irrevocable Letter of Credit (LC) at sight or international TT wire transfer.'
     },
     {
       step: '03',

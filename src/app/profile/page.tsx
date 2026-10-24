@@ -173,16 +173,12 @@ export default function ProfilePage() {
                       <td>{COMPANY_DATA.annualTurnover}</td>
                     </tr>
                     <tr>
-                      <td style={{ fontWeight: 600 }}>Lead Banking Partner</td>
-                      <td>{COMPANY_DATA.banker}</td>
+                      <td style={{ fontWeight: 600 }}>Quality Standard</td>
+                      <td><span className="badge badge-success">ISO 9001 Batch Tested</span></td>
                     </tr>
                     <tr>
-                      <td style={{ fontWeight: 600 }}>IndiaMART Status</td>
-                      <td><span className="badge badge-success">TrustSEAL Verified</span></td>
-                    </tr>
-                    <tr>
-                      <td style={{ fontWeight: 600 }}>Customer Satisfaction</td>
-                      <td>73% Quick Response Rate</td>
+                      <td style={{ fontWeight: 600 }}>Export Sea Gateway</td>
+                      <td>Mundra & Kandla Ports (Gujarat)</td>
                     </tr>
                   </tbody>
                 </table>

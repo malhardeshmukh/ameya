@@ -108,7 +108,7 @@ export default function ContactPage() {
                       {COMPANY_DATA.formattedPhone}
                     </a>
                     <div style={{ fontSize: '12px', color: 'var(--colors-ink-meta)', marginTop: '2px' }}>
-                      {COMPANY_DATA.responseRate} (73% quick response)
+                      Prompt commercial response during business hours
                     </div>
                   </div>
                 </div>
@@ -144,7 +144,6 @@ export default function ContactPage() {
                 <div style={{ fontWeight: 600, marginBottom: '6px' }}>Statutory Disclosures:</div>
                 <div>GSTIN: <strong>{COMPANY_DATA.gstin}</strong></div>
                 <div>DGFT IEC: <strong>{COMPANY_DATA.iec}</strong></div>
-                <div>Lead Banker: {COMPANY_DATA.banker}</div>
               </div>
             </div>
 

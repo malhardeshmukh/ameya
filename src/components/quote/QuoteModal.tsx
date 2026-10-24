@@ -71,14 +71,14 @@ export default function QuoteModal() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
               <span className="badge badge-blue">Direct Factory RFQ</span>
               <span className="sap-caption" style={{ color: 'var(--colors-success)', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-                <ShieldCheck size={14} /> TrustSEAL Verified
+                <ShieldCheck size={14} /> ISO 9001 Tested
               </span>
             </div>
             <h2 id="rfq-dialog-title" className="sap-subhead" style={{ fontSize: '24px', fontWeight: 600 }}>
               Request Commercial Quotation & Specifications
             </h2>
             <p className="sap-caption" style={{ marginTop: '2px' }}>
-              Direct inquiry to Ameyaa Industries, Ahmedabad. 73% response rate within 2 business hours.
+              Direct inquiry to Ameyaa Industries, Ahmedabad. Prompt commercial response within business hours.
             </p>
           </div>
           <button

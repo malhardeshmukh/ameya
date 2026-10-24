@@ -62,7 +62,7 @@ export default function Footer() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '13px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <ShieldCheck size={16} color="var(--colors-success)" />
-                <span style={{ color: 'var(--colors-ink)' }}><strong>TrustSEAL Verified Supplier</strong></span>
+                <span style={{ color: 'var(--colors-ink)' }}><strong>Certified Chemical Exporter</strong></span>
               </div>
               <div><strong>GSTIN:</strong> {COMPANY_DATA.gstin}</div>
               <div><strong>DGFT IEC:</strong> {COMPANY_DATA.iec}</div>
@@ -187,8 +187,7 @@ export default function Footer() {
               </div>
               <div style={{ backgroundColor: 'var(--colors-canvas)', padding: '10px 12px', borderRadius: 'var(--rounded-md)', border: '1px solid var(--colors-border-subtle)', marginTop: '8px', fontSize: '12px' }}>
                 <div><strong>Logistics Gateway:</strong> Kandla / Mundra Sea Ports</div>
-                <div><strong>Lead Banker:</strong> {COMPANY_DATA.banker}</div>
-                <div><strong>Response Rate:</strong> {COMPANY_DATA.responseRate}</div>
+                <div><strong>Quality Assurance:</strong> 100% Batch Laboratory Tested</div>
               </div>
             </div>
           </div>
@@ -216,7 +215,7 @@ export default function Footer() {
             <span>•</span>
             <span>GSTIN: {COMPANY_DATA.gstin}</span>
             <span>•</span>
-            <span>Payment Protected by IndiaMART</span>
+            <span>Secure Commercial B2B Settlement</span>
           </div>
         </div>
       </div>

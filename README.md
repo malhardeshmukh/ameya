@@ -18,7 +18,7 @@ Built with an enterprise design language inspired by SAP's design specification 
 
 - **Authentic Scraped Content**:
   - Complete catalog of **50 industrial products** across **13 categories** with prices, high-resolution photography, physical state (lump, liquid, powder), and detailed chemical specifications (Baumé gravity, SiO2 %, molar ratios, applications).
-  - Verified corporate details: GSTIN (`24ACAFA0567E1ZY`), DGFT IEC Code (`ACAFA0567E`), IndiaMART TrustSEAL status, Ahmedabad registered address, and leadership profile (CEO Jaya Nair & Partners).
+  - Verified corporate details: GSTIN (`24ACAFA0567E1ZY`), DGFT IEC Code (`ACAFA0567E`), ISO 9001 tested quality standards, Ahmedabad registered address, and leadership profile (CEO Jaya Nair & Partners).
   - Customer ratings and verified client testimonials (Macpac Industries, Kottayam, Dhaka, Uzbekistan, Morbi).
 
 - **Interactive Commercial Workflows**:

@@ -153,7 +153,7 @@ export default function ProductDetailView({
               {product.categoryName}
             </span>
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', fontSize: '12px', color: '#6bc0ff', fontWeight: 500 }}>
-              <ShieldCheck size={14} /> TrustSEAL Verified
+              <ShieldCheck size={14} /> ISO 9001 Tested
             </span>
             <span style={{ fontSize: '12px', color: 'rgba(255, 255, 255, 0.75)' }}>•</span>
             <span style={{ fontSize: '12px', color: 'rgba(255, 255, 255, 0.85)' }}>
