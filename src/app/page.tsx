@@ -202,56 +202,71 @@ export default function HomePage() {
                 </h3>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '20px' }}>
-                  <div
+                  <Link
+                    href="/products/potassium-silicate/soap-potassium-silicate-lumps"
                     style={{
                       display: 'flex',
                       justifyContent: 'space-between',
                       alignItems: 'center',
                       padding: '10px 12px',
                       backgroundColor: 'var(--colors-chrome)',
-                      borderRadius: 'var(--rounded-sm)'
+                      borderRadius: 'var(--rounded-sm)',
+                      textDecoration: 'none',
+                      color: 'inherit',
+                      transition: 'background-color 0.15s ease'
                     }}
+                    className="hero-reagent-link"
                   >
                     <div>
-                      <div style={{ fontWeight: 600, fontSize: '14px' }}>Soap Potassium Silicate Lumps</div>
+                      <div style={{ fontWeight: 600, fontSize: '14px', color: 'var(--colors-ink)' }}>Soap Potassium Silicate Lumps</div>
                       <div style={{ fontSize: '12px', color: 'var(--colors-ink-meta)' }}>K2O · xSiO2 | Acid-Proof Lining</div>
                     </div>
                     <div style={{ fontWeight: 700, color: 'var(--colors-primary-deep)', fontSize: '15px' }}>₹ 45 / Kg</div>
-                  </div>
+                  </Link>
 
-                  <div
+                  <Link
+                    href="/products/titanium-dioxide/titanium-dioxide-powder"
                     style={{
                       display: 'flex',
                       justifyContent: 'space-between',
                       alignItems: 'center',
                       padding: '10px 12px',
                       backgroundColor: 'var(--colors-chrome)',
-                      borderRadius: 'var(--rounded-sm)'
+                      borderRadius: 'var(--rounded-sm)',
+                      textDecoration: 'none',
+                      color: 'inherit',
+                      transition: 'background-color 0.15s ease'
                     }}
+                    className="hero-reagent-link"
                   >
                     <div>
-                      <div style={{ fontWeight: 600, fontSize: '14px' }}>Titanium Dioxide Powder (Rutile)</div>
+                      <div style={{ fontWeight: 600, fontSize: '14px', color: 'var(--colors-ink)' }}>Titanium Dioxide Powder (Rutile)</div>
                       <div style={{ fontSize: '12px', color: 'var(--colors-ink-meta)' }}>High Opacity Pigment</div>
                     </div>
                     <div style={{ fontWeight: 700, color: 'var(--colors-primary-deep)', fontSize: '15px' }}>₹ 230 / Kg</div>
-                  </div>
+                  </Link>
 
-                  <div
+                  <Link
+                    href="/products/limestone-lumps-and-powder/white-limestone-lumps"
                     style={{
                       display: 'flex',
                       justifyContent: 'space-between',
                       alignItems: 'center',
                       padding: '10px 12px',
                       backgroundColor: 'var(--colors-chrome)',
-                      borderRadius: 'var(--rounded-sm)'
+                      borderRadius: 'var(--rounded-sm)',
+                      textDecoration: 'none',
+                      color: 'inherit',
+                      transition: 'background-color 0.15s ease'
                     }}
+                    className="hero-reagent-link"
                   >
                     <div>
-                      <div style={{ fontWeight: 600, fontSize: '14px' }}>White Limestone Lumps (Calcite)</div>
+                      <div style={{ fontWeight: 600, fontSize: '14px', color: 'var(--colors-ink)' }}>White Limestone Lumps (Calcite)</div>
                       <div style={{ fontSize: '12px', color: 'var(--colors-ink-meta)' }}>High Purity CaCO3 &gt;95%</div>
                     </div>
                     <div style={{ fontWeight: 700, color: 'var(--colors-primary-deep)', fontSize: '15px' }}>₹ 900 / Tonne</div>
-                  </div>
+                  </Link>
                 </div>
 
                 <div style={{ backgroundColor: 'var(--colors-band-blue)', padding: '12px', borderRadius: 'var(--rounded-sm)', fontSize: '13px', lineHeight: '1.4', marginBottom: '16px' }}>

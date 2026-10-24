@@ -524,7 +524,7 @@ export default function Header() {
                   {activeCategory.products.map((p) => (
                     <Link
                       key={p.id}
-                      href={`/products/${activeCategory.id}#${p.id}`}
+                      href={`/products/${activeCategory.id}/${p.id}`}
                       onClick={() => setDesktopDropdownOpen(false)}
                       className="mega-product-item"
                       style={{
@@ -809,7 +809,7 @@ export default function Header() {
                                 {cat.products.map((p) => (
                                   <Link
                                     key={p.id}
-                                    href={`/products/${cat.id}#${p.id}`}
+                                    href={`/products/${cat.id}/${p.id}`}
                                     onClick={() => setMobileMenuOpen(false)}
                                     style={{
                                       display: 'flex',

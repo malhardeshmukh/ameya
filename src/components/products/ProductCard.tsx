@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { Product } from '@/data/products';
 import { useQuote } from '../quote/QuoteContext';
-import { FileText, Send, Check, Info, Sparkles } from 'lucide-react';
+import { FileText, Send, Check, Info, Sparkles, ExternalLink } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
@@ -16,6 +17,7 @@ export default function ProductCard({ product, onViewSpecs }: ProductCardProps) 
 
   // Extract key specs to display
   const keySpecs = Object.entries(product.specs).slice(0, 3);
+  const productHref = `/products/${product.category}/${product.id}`;
 
   return (
     <article
@@ -33,7 +35,8 @@ export default function ProductCard({ product, onViewSpecs }: ProductCardProps) 
       className="product-card"
     >
       {/* Product Image Frame */}
-      <div
+      <Link
+        href={productHref}
         style={{
           position: 'relative',
           width: '100%',
@@ -43,8 +46,10 @@ export default function ProductCard({ product, onViewSpecs }: ProductCardProps) 
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: '12px'
+          padding: '12px',
+          textDecoration: 'none'
         }}
+        title={`View ${product.name} product page`}
       >
         {product.image ? (
           // eslint-disable-next-line @next/next/no-img-element
@@ -80,7 +85,7 @@ export default function ProductCard({ product, onViewSpecs }: ProductCardProps) 
             </span>
           </div>
         )}
-      </div>
+      </Link>
 
       {/* Card Body */}
       <div
@@ -101,7 +106,17 @@ export default function ProductCard({ product, onViewSpecs }: ProductCardProps) 
             minHeight: '44px'
           }}
         >
-          {product.name}
+          <Link
+            href={productHref}
+            style={{
+              color: 'inherit',
+              textDecoration: 'none',
+              transition: 'color 0.15s ease'
+            }}
+            className="product-title-link"
+          >
+            {product.name}
+          </Link>
         </h3>
 
         {/* Price tag */}
@@ -180,21 +195,22 @@ export default function ProductCard({ product, onViewSpecs }: ProductCardProps) 
             <span>Get Best Quote</span>
           </button>
 
-          {onViewSpecs && (
-            <button
-              type="button"
-              onClick={() => onViewSpecs(product)}
-              className="btn btn-outline"
-              style={{
-                padding: '8px 10px',
-                minHeight: '40px'
-              }}
-              title="View full specs"
-              aria-label={`View specifications for ${product.name}`}
-            >
-              <Info size={16} />
-            </button>
-          )}
+          <Link
+            href={productHref}
+            className="btn btn-outline"
+            style={{
+              padding: '8px 10px',
+              minHeight: '40px',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textDecoration: 'none'
+            }}
+            title={`View dedicated page for ${product.name}`}
+            aria-label={`View dedicated page for ${product.name}`}
+          >
+            <Info size={16} />
+          </Link>
         </div>
       </div>
     </article>

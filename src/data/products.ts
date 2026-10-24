@@ -930,8 +930,8 @@ export const CATEGORIES: ProductCategory[] = [
         "description": "Certified Silicone Fluids manufactured and supplied by Ameyaa Industries to national and international quality specifications."
       },
       {
-        "id": "silicone-fluids",
-        "name": "Silicone Fluids .",
+        "id": "silicone-fluids-industrial",
+        "name": "Silicone Fluids (Industrial Grade)",
         "category": "silicone-fluids",
         "categoryName": "Silicone Fluids",
         "price": "Price on Request",
@@ -942,7 +942,7 @@ export const CATEGORIES: ProductCategory[] = [
           "Country of Origin": "Made in India",
           "Packaging Type": "Drum / Bag / Loose Bulk"
         },
-        "description": "Certified Silicone Fluids . manufactured and supplied by Ameyaa Industries to national and international quality specifications."
+        "description": "Certified Silicone Fluids (Industrial Grade) manufactured and supplied by Ameyaa Industries to national and international quality specifications."
       }
     ]
   }
@@ -956,3 +956,25 @@ export const ALL_PRODUCTS: Product[] = CATEGORIES.flatMap(cat =>
 );
 
 export const FEATURED_PRODUCTS: Product[] = ALL_PRODUCTS.filter(p => p.featured).slice(0, 8);
+
+export function getProductById(id: string): Product | undefined {
+  return ALL_PRODUCTS.find(p => p.id === id);
+}
+
+export function getCategoryById(id: string): ProductCategory | undefined {
+  return CATEGORIES.find(c => c.id === id);
+}
+
+export function getRelatedProducts(productId: string, limit: number = 4): Product[] {
+  const current = getProductById(productId);
+  if (!current) return ALL_PRODUCTS.slice(0, limit);
+  
+  const sameCategory = ALL_PRODUCTS.filter(p => p.category === current.category && p.id !== current.id);
+  if (sameCategory.length >= limit) {
+    return sameCategory.slice(0, limit);
+  }
+  
+  const others = ALL_PRODUCTS.filter(p => p.category !== current.category && p.id !== current.id);
+  return [...sameCategory, ...others].slice(0, limit);
+}
+
