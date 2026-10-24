@@ -60,227 +60,112 @@ export default function HomePage() {
         />
 
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '1.2fr 0.8fr',
-              gap: 'var(--spacing-huge)',
-              alignItems: 'center'
-            }}
-            className="hero-grid"
-          >
-            {/* Left Column: Hero Text */}
-            <div>
-              <div
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  backgroundColor: 'rgba(255, 255, 255, 0.14)',
-                  padding: '6px 14px',
-                  borderRadius: 'var(--rounded-md)',
-                  marginBottom: '20px',
-                  border: '1px solid rgba(255, 255, 255, 0.25)'
-                }}
-              >
-                <ShieldCheck size={16} color="#6bc0ff" />
-                <span style={{ fontSize: '13px', fontWeight: 500, letterSpacing: '0.2px' }}>
-                  IndiaMART TrustSEAL Verified • GSTIN: {COMPANY_DATA.gstin}
-                </span>
-              </div>
-
-              <h1
-                style={{
-                  fontSize: '44px',
-                  fontWeight: 700,
-                  lineHeight: '1.15',
-                  letterSpacing: '-0.5px',
-                  color: 'var(--colors-on-primary)',
-                  marginBottom: '18px'
-                }}
-                className="hero-main-title"
-              >
-                Potassium Silicate & Sodium Silicate Manufacturer & Global Exporter
-              </h1>
-
-              <p
-                style={{
-                  fontSize: '18px',
-                  lineHeight: '1.5',
-                  color: 'rgba(255, 255, 255, 0.9)',
-                  marginBottom: '28px',
-                  maxWidth: '620px'
-                }}
-              >
-                Ameyaa Industries supplies high-purity soluble silicates, mineral reagents, limestone lumps, and chemical intermediates from Ahmedabad, Gujarat to domestic manufacturers and global industries across 5+ countries.
-              </p>
-
-              {/* Action Buttons */}
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginBottom: '36px' }} className="hero-cta-group">
-                <button
-                  type="button"
-                  onClick={() => openQuote()}
-                  className="btn"
-                  style={{
-                    backgroundColor: 'var(--colors-canvas)',
-                    color: 'var(--colors-primary-deep)',
-                    fontWeight: 600,
-                    padding: '12px 22px',
-                    minHeight: '44px',
-                    borderRadius: 'var(--rounded-md)',
-                    border: 'none',
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
-                  }}
-                  id="hero-request-quote-btn"
-                >
-                  <FileText size={17} /> Request Direct Factory Quote
-                </button>
-
-                <Link
-                  href="/products"
-                  className="btn"
-                  style={{
-                    backgroundColor: 'rgba(255, 255, 255, 0.12)',
-                    color: 'var(--colors-on-primary)',
-                    border: '1px solid rgba(255, 255, 255, 0.4)',
-                    padding: '12px 20px',
-                    minHeight: '44px',
-                    borderRadius: 'var(--rounded-md)',
-                    textDecoration: 'none'
-                  }}
-                  id="hero-explore-catalog-btn"
-                >
-                  Browse 50+ Products <ArrowRight size={16} />
-                </Link>
-              </div>
-
-              {/* Key Trust Stats */}
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(3, 1fr)',
-                  gap: '16px',
-                  borderTop: '1px solid rgba(255, 255, 255, 0.2)',
-                  paddingTop: '20px'
-                }}
-                className="hero-stats-grid"
-              >
-                <div>
-                  <div style={{ fontSize: '24px', fontWeight: 700, color: 'var(--colors-on-primary)' }}>50+</div>
-                  <div style={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.8)' }}>Industrial Products</div>
-                </div>
-                <div>
-                  <div style={{ fontSize: '24px', fontWeight: 700, color: 'var(--colors-on-primary)' }}>5+</div>
-                  <div style={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.8)' }}>Export Nations</div>
-                </div>
-                <div>
-                  <div style={{ fontSize: '24px', fontWeight: 700, color: 'var(--colors-on-primary)' }}>73%</div>
-                  <div style={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.8)' }}>Fast Response Rate</div>
-                </div>
-              </div>
+          <div style={{ maxWidth: '840px' }} className="hero-content">
+            <div
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                backgroundColor: 'rgba(255, 255, 255, 0.14)',
+                padding: '6px 14px',
+                borderRadius: 'var(--rounded-md)',
+                marginBottom: '20px',
+                border: '1px solid rgba(255, 255, 255, 0.25)'
+              }}
+            >
+              <ShieldCheck size={16} color="#6bc0ff" />
+              <span style={{ fontSize: '13px', fontWeight: 500, letterSpacing: '0.2px' }}>
+                IndiaMART TrustSEAL Verified • GSTIN: {COMPANY_DATA.gstin}
+              </span>
             </div>
 
-            {/* Right Column: Interactive Product Lockup Card (SAP Media Frame Spec) */}
-            <div>
-              <div
+            <h1
+              style={{
+                fontSize: '46px',
+                fontWeight: 700,
+                lineHeight: '1.15',
+                letterSpacing: '-0.5px',
+                color: 'var(--colors-on-primary)',
+                marginBottom: '18px'
+              }}
+              className="hero-main-title"
+            >
+              Potassium Silicate & Sodium Silicate Manufacturer & Global Exporter
+            </h1>
+
+            <p
+              style={{
+                fontSize: '18px',
+                lineHeight: '1.5',
+                color: 'rgba(255, 255, 255, 0.9)',
+                marginBottom: '28px',
+                maxWidth: '660px'
+              }}
+            >
+              Ameyaa Industries supplies high-purity soluble silicates, mineral reagents, limestone lumps, and chemical intermediates from Ahmedabad, Gujarat to domestic manufacturers and global industries across 5+ countries.
+            </p>
+
+            {/* Action Buttons */}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginBottom: '36px' }} className="hero-cta-group">
+              <button
+                type="button"
+                onClick={() => openQuote()}
+                className="btn"
                 style={{
                   backgroundColor: 'var(--colors-canvas)',
-                  color: 'var(--colors-ink)',
-                  borderRadius: 'var(--rounded-lg)',
-                  padding: 'var(--spacing-giant)',
-                  boxShadow: '0 16px 40px rgba(0, 0, 0, 0.25)',
-                  border: '1px solid var(--colors-border-subtle)'
+                  color: 'var(--colors-primary-deep)',
+                  fontWeight: 600,
+                  padding: '12px 22px',
+                  minHeight: '44px',
+                  borderRadius: 'var(--rounded-md)',
+                  border: 'none',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
                 }}
+                id="hero-request-quote-btn"
               >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
-                  <span className="badge badge-blue">Manufacturing Snapshot</span>
-                  <span style={{ fontSize: '12px', color: 'var(--colors-ink-meta)' }}>Ahmedabad Plant</span>
-                </div>
+                <FileText size={17} /> Request Direct Factory Quote
+              </button>
 
-                <h3 style={{ fontSize: '18px', fontWeight: 600, color: 'var(--colors-ink)', marginBottom: '12px' }}>
-                  High-Demand Chemical Reagents
-                </h3>
+              <Link
+                href="/products"
+                className="btn"
+                style={{
+                  backgroundColor: 'rgba(255, 255, 255, 0.12)',
+                  color: 'var(--colors-on-primary)',
+                  border: '1px solid rgba(255, 255, 255, 0.4)',
+                  padding: '12px 20px',
+                  minHeight: '44px',
+                  borderRadius: 'var(--rounded-md)',
+                  textDecoration: 'none'
+                }}
+                id="hero-explore-catalog-btn"
+              >
+                Browse 50+ Products <ArrowRight size={16} />
+              </Link>
+            </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '20px' }}>
-                  <Link
-                    href="/products/potassium-silicate/soap-potassium-silicate-lumps"
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      padding: '10px 12px',
-                      backgroundColor: 'var(--colors-chrome)',
-                      borderRadius: 'var(--rounded-sm)',
-                      textDecoration: 'none',
-                      color: 'inherit',
-                      transition: 'background-color 0.15s ease'
-                    }}
-                    className="hero-reagent-link"
-                  >
-                    <div>
-                      <div style={{ fontWeight: 600, fontSize: '14px', color: 'var(--colors-ink)' }}>Soap Potassium Silicate Lumps</div>
-                      <div style={{ fontSize: '12px', color: 'var(--colors-ink-meta)' }}>K2O · xSiO2 | Acid-Proof Lining</div>
-                    </div>
-                    <div style={{ fontWeight: 700, color: 'var(--colors-primary-deep)', fontSize: '15px' }}>₹ 45 / Kg</div>
-                  </Link>
-
-                  <Link
-                    href="/products/titanium-dioxide/titanium-dioxide-powder"
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      padding: '10px 12px',
-                      backgroundColor: 'var(--colors-chrome)',
-                      borderRadius: 'var(--rounded-sm)',
-                      textDecoration: 'none',
-                      color: 'inherit',
-                      transition: 'background-color 0.15s ease'
-                    }}
-                    className="hero-reagent-link"
-                  >
-                    <div>
-                      <div style={{ fontWeight: 600, fontSize: '14px', color: 'var(--colors-ink)' }}>Titanium Dioxide Powder (Rutile)</div>
-                      <div style={{ fontSize: '12px', color: 'var(--colors-ink-meta)' }}>High Opacity Pigment</div>
-                    </div>
-                    <div style={{ fontWeight: 700, color: 'var(--colors-primary-deep)', fontSize: '15px' }}>₹ 230 / Kg</div>
-                  </Link>
-
-                  <Link
-                    href="/products/limestone-lumps-and-powder/white-limestone-lumps"
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      padding: '10px 12px',
-                      backgroundColor: 'var(--colors-chrome)',
-                      borderRadius: 'var(--rounded-sm)',
-                      textDecoration: 'none',
-                      color: 'inherit',
-                      transition: 'background-color 0.15s ease'
-                    }}
-                    className="hero-reagent-link"
-                  >
-                    <div>
-                      <div style={{ fontWeight: 600, fontSize: '14px', color: 'var(--colors-ink)' }}>White Limestone Lumps (Calcite)</div>
-                      <div style={{ fontSize: '12px', color: 'var(--colors-ink-meta)' }}>High Purity CaCO3 &gt;95%</div>
-                    </div>
-                    <div style={{ fontWeight: 700, color: 'var(--colors-primary-deep)', fontSize: '15px' }}>₹ 900 / Tonne</div>
-                  </Link>
-                </div>
-
-                <div style={{ backgroundColor: 'var(--colors-band-blue)', padding: '12px', borderRadius: 'var(--rounded-sm)', fontSize: '13px', lineHeight: '1.4', marginBottom: '16px' }}>
-                  <strong>Export Logistics:</strong> FCL / LCL shipments directly dispatched via Kandla Port and Mundra Port with full phytosanitary, MSDS, and COA documentation.
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => openQuote(FEATURED_PRODUCTS[0])}
-                  className="btn btn-primary"
-                  style={{ width: '100%', minHeight: '44px' }}
-                >
-                  Request Commercial Pricing Sheet
-                </button>
+            {/* Key Trust Stats */}
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3, minmax(0, 160px))',
+                gap: '24px',
+                borderTop: '1px solid rgba(255, 255, 255, 0.2)',
+                paddingTop: '20px'
+              }}
+              className="hero-stats-grid"
+            >
+              <div>
+                <div style={{ fontSize: '28px', fontWeight: 700, color: 'var(--colors-on-primary)' }}>50+</div>
+                <div style={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.8)' }}>Industrial Products</div>
+              </div>
+              <div>
+                <div style={{ fontSize: '28px', fontWeight: 700, color: 'var(--colors-on-primary)' }}>5+</div>
+                <div style={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.8)' }}>Export Nations</div>
+              </div>
+              <div>
+                <div style={{ fontSize: '28px', fontWeight: 700, color: 'var(--colors-on-primary)' }}>73%</div>
+                <div style={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.8)' }}>Fast Response Rate</div>
               </div>
             </div>
           </div>
