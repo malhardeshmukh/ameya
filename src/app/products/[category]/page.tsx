@@ -56,7 +56,7 @@ export default async function CategoryPage({ params }: Props) {
             <span>{currentCategory.name}</span>
           </div>
 
-          <h1 className="sap-hero-title" style={{ fontSize: '36px', fontWeight: 600, marginBottom: '8px' }}>
+          <h1 className="sap-hero-title" style={{ fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 600, marginBottom: '8px' }}>
             {currentCategory.name}
           </h1>
           <p className="sap-body" style={{ color: 'rgba(255, 255, 255, 0.88)', maxWidth: '720px' }}>
@@ -76,7 +76,7 @@ export default async function CategoryPage({ params }: Props) {
               padding: 'var(--spacing-giant)'
             }}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '16px', marginBottom: '16px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '16px', marginBottom: '16px' }} className="category-overview-header">
               <div>
                 <span className="badge badge-blue" style={{ marginBottom: '6px' }}>
                   Product Portfolio Overview
@@ -85,7 +85,7 @@ export default async function CategoryPage({ params }: Props) {
                   Technical Capabilities: {currentCategory.name}
                 </h2>
               </div>
-              <div style={{ display: 'flex', gap: '10px' }}>
+              <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }} className="category-badges-row">
                 <span className="badge badge-success">
                   <ShieldCheck size={13} /> ISO Tested Grades
                 </span>

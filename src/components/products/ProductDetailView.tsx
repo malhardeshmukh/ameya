@@ -185,6 +185,7 @@ export default function ProductDetailView({
               color: 'var(--colors-on-primary)',
               maxWidth: '920px'
             }}
+            className="product-detail-hero-title"
           >
             {product.name}
           </h1>
@@ -195,17 +196,9 @@ export default function ProductDetailView({
           2. MAIN PRODUCT OVERVIEW (CANVAS WHITE GROUND)
           Two-column layout: Media & Credentials on left, Commercial & Specs on right
       ────────────────────────────────────────────────────────────── */}
-      <section className="band-zone bg-canvas" style={{ paddingTop: '36px', paddingBottom: '48px' }}>
+      <section className="band-zone bg-canvas product-overview-section" style={{ paddingTop: '36px', paddingBottom: '48px' }}>
         <div className="container">
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'minmax(320px, 480px) 1fr',
-              gap: 'var(--spacing-huge)',
-              alignItems: 'start'
-            }}
-            className="product-main-grid"
-          >
+          <div className="product-main-grid">
             {/* Left Column: Visual Media & High-Trust Manufacturing Highlights */}
             <div>
               {/* Product Media Box */}
@@ -223,6 +216,7 @@ export default function ProductDetailView({
                   boxShadow: '0 4px 16px rgba(0, 0, 0, 0.04)',
                   overflow: 'hidden'
                 }}
+                className="product-media-box"
               >
                 {product.image ? (
                   // eslint-disable-next-line @next/next/no-img-element
@@ -379,7 +373,7 @@ export default function ProductDetailView({
                   marginBottom: '24px'
                 }}
               >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px' }} className="product-pricing-header">
                   <div>
                     <div style={{ fontSize: '12px', color: 'var(--colors-ink-meta)', fontWeight: 600, textTransform: 'uppercase' }}>
                       Commercial Indicative Price
@@ -401,7 +395,7 @@ export default function ProductDetailView({
                     </div>
                   </div>
 
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '4px' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '4px' }} className="pricing-stock-meta">
                     <span className="badge badge-success" style={{ fontSize: '12px' }}>
                       ● In Stock & Ready for Dispatch
                     </span>
@@ -543,7 +537,7 @@ export default function ProductDetailView({
 
                 {/* Action Buttons */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }} className="product-action-row">
                     <button
                       type="button"
                       onClick={() => {
@@ -553,7 +547,7 @@ export default function ProductDetailView({
                           addItem(product, `${selectedQty} Kg`, selectedPackaging, '', true);
                         }
                       }}
-                      className="btn"
+                      className="btn btn-cart-action"
                       style={{
                         flex: 1,
                         minWidth: '220px',
@@ -581,7 +575,7 @@ export default function ProductDetailView({
                       href={whatsappUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn"
+                      className="btn btn-whatsapp-action"
                       style={{
                         minHeight: '46px',
                         padding: '10px 18px',
@@ -654,42 +648,44 @@ export default function ProductDetailView({
                   </span>
                 </div>
 
-                <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13px' }}>
-                  <tbody>
-                    <tr style={{ borderBottom: '1px solid var(--colors-border-subtle)', backgroundColor: '#fafbfc' }}>
-                      <td style={{ padding: '10px 18px', color: 'var(--colors-ink-meta)', width: '38%', fontWeight: 500 }}>
-                        Product Category
-                      </td>
-                      <td style={{ padding: '10px 18px', color: 'var(--colors-ink)', fontWeight: 600 }}>
-                        {product.categoryName}
-                      </td>
-                    </tr>
-                    {specEntries.map(([key, val], idx) => (
-                      <tr
-                        key={key}
-                        style={{
-                          borderBottom: idx === specEntries.length - 1 ? 'none' : '1px solid var(--colors-border-subtle)',
-                          backgroundColor: idx % 2 === 0 ? 'var(--colors-canvas)' : '#fafbfc'
-                        }}
-                      >
-                        <td style={{ padding: '10px 18px', color: 'var(--colors-ink-meta)', fontWeight: 500 }}>
-                          {key}
+                <div className="product-spec-table-wrap" style={{ overflowX: 'auto', width: '100%' }}>
+                  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13px' }} className="product-spec-table">
+                    <tbody>
+                      <tr style={{ borderBottom: '1px solid var(--colors-border-subtle)', backgroundColor: '#fafbfc' }}>
+                        <td style={{ padding: '10px 18px', color: 'var(--colors-ink-meta)', width: '38%', fontWeight: 500 }}>
+                          Product Category
                         </td>
                         <td style={{ padding: '10px 18px', color: 'var(--colors-ink)', fontWeight: 600 }}>
-                          {val}
+                          {product.categoryName}
                         </td>
                       </tr>
-                    ))}
-                    <tr style={{ backgroundColor: 'var(--colors-canvas)', borderTop: '1px solid var(--colors-border-subtle)' }}>
-                      <td style={{ padding: '10px 18px', color: 'var(--colors-ink-meta)', fontWeight: 500 }}>
-                        Dispatch Readiness
-                      </td>
-                      <td style={{ padding: '10px 18px', color: 'var(--colors-success)', fontWeight: 600 }}>
-                        Ready Stock • Immediate Factory Load
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                      {specEntries.map(([key, val], idx) => (
+                        <tr
+                          key={key}
+                          style={{
+                            borderBottom: idx === specEntries.length - 1 ? 'none' : '1px solid var(--colors-border-subtle)',
+                            backgroundColor: idx % 2 === 0 ? 'var(--colors-canvas)' : '#fafbfc'
+                          }}
+                        >
+                          <td style={{ padding: '10px 18px', color: 'var(--colors-ink-meta)', fontWeight: 500 }}>
+                            {key}
+                          </td>
+                          <td style={{ padding: '10px 18px', color: 'var(--colors-ink)', fontWeight: 600 }}>
+                            {val}
+                          </td>
+                        </tr>
+                      ))}
+                      <tr style={{ backgroundColor: 'var(--colors-canvas)', borderTop: '1px solid var(--colors-border-subtle)' }}>
+                        <td style={{ padding: '10px 18px', color: 'var(--colors-ink-meta)', fontWeight: 500 }}>
+                          Dispatch Readiness
+                        </td>
+                        <td style={{ padding: '10px 18px', color: 'var(--colors-success)', fontWeight: 600 }}>
+                          Ready Stock • Immediate Factory Load
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
@@ -720,6 +716,7 @@ export default function ProductDetailView({
               marginBottom: '24px',
               overflowX: 'auto'
             }}
+            className="product-tabs-nav"
           >
             {[
               { id: 'specs', label: 'Quality Assurance & COA Standards' },
@@ -927,7 +924,7 @@ export default function ProductDetailView({
                 </div>
               ) : (
                 <form onSubmit={handleInlineSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }} className="rfq-form-row">
                     <div>
                       <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, marginBottom: '4px' }}>Full Name *</label>
                       <input
@@ -954,7 +951,7 @@ export default function ProductDetailView({
                     </div>
                   </div>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }} className="rfq-form-row">
                     <div>
                       <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, marginBottom: '4px' }}>Business Email *</label>
                       <input
@@ -996,7 +993,7 @@ export default function ProductDetailView({
 
                   <button
                     type="submit"
-                    className="btn btn-primary"
+                    className="btn btn-primary rfq-submit-btn"
                     style={{ padding: '10px 20px', alignSelf: 'flex-start', minHeight: '44px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
                   >
                     <WhatsAppIcon size={16} color="#ffffff" />
@@ -1015,7 +1012,7 @@ export default function ProductDetailView({
       {relatedProducts.length > 0 && (
         <section className="band-zone bg-canvas" style={{ paddingTop: '40px', paddingBottom: '60px' }}>
           <div className="container">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '24px', flexWrap: 'wrap', gap: '12px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '24px', flexWrap: 'wrap', gap: '12px' }} className="related-products-header">
               <div>
                 <span className="badge badge-neutral" style={{ marginBottom: '6px' }}>
                   Portfolio Exploration
@@ -1030,7 +1027,7 @@ export default function ProductDetailView({
 
               <Link
                 href={`/products/${category.id}`}
-                className="btn btn-outline"
+                className="btn btn-outline related-products-view-all-btn"
                 style={{ fontSize: '13px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
               >
                 <span>View All in {category.name}</span>

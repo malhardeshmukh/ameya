@@ -83,6 +83,7 @@ export default function ProductSpecsModal({ product, onClose }: ProductSpecsModa
 
         {/* Product Photo & Intro */}
         <div
+          className="modal-product-intro"
           style={{
             display: 'flex',
             gap: '16px',
@@ -172,7 +173,7 @@ export default function ProductSpecsModal({ product, onClose }: ProductSpecsModa
         </div>
 
         {/* Modal footer */}
-        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', borderTop: '1px solid var(--colors-border-subtle)', paddingTop: '16px', flexWrap: 'wrap' }}>
+        <div className="modal-footer-actions" style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', borderTop: '1px solid var(--colors-border-subtle)', paddingTop: '16px', flexWrap: 'wrap' }}>
           <button type="button" onClick={onClose} className="btn btn-outline">
             Close
           </button>

@@ -62,6 +62,17 @@ export default function Header() {
   }, [pathname]);
 
   useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
+  useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setDesktopDropdownOpen(false);
@@ -70,13 +81,22 @@ export default function Header() {
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') {
         setDesktopDropdownOpen(false);
+        setMobileMenuOpen(false);
+      }
+    }
+    function handleResize() {
+      if (window.innerWidth >= 1025) {
+        setMobileMenuOpen(false);
+        setDesktopDropdownOpen(false);
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
     document.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('resize', handleResize);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('resize', handleResize);
       if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
     };
   }, []);
@@ -658,19 +678,36 @@ export default function Header() {
         )}
       </div>
 
-      {/* Mobile Drawer Navigation */}
+      {/* Mobile Drawer Backdrop (Overlay - does not push page content) */}
+      {mobileMenuOpen && (
+        <div
+          onClick={() => setMobileMenuOpen(false)}
+          className="mobile-drawer-backdrop"
+          aria-hidden="true"
+        />
+      )}
+
+      {/* Mobile Drawer Navigation (Positioned absolutely over page - zero downward push) */}
       {mobileMenuOpen && (
         <div
           style={{
+            position: 'absolute',
+            top: '100%',
+            left: 0,
+            right: 0,
+            width: '100%',
             backgroundColor: 'var(--colors-canvas)',
             borderTop: '1px solid var(--colors-border-subtle)',
-            padding: '16px 20px',
+            borderBottom: '1px solid var(--colors-border-subtle)',
+            padding: '16px 20px 28px',
             display: 'flex',
             flexDirection: 'column',
             gap: '10px',
-            boxShadow: '0 8px 20px rgba(0,0,0,0.08)',
-            maxHeight: 'calc(100vh - 70px)',
-            overflowY: 'auto'
+            boxShadow: '0 20px 48px rgba(0,0,0,0.18)',
+            maxHeight: 'calc(100dvh - 70px)',
+            overflowY: 'auto',
+            WebkitOverflowScrolling: 'touch',
+            zIndex: 600
           }}
           className="mobile-drawer-menu"
         >

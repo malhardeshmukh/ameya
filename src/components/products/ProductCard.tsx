@@ -197,7 +197,7 @@ export default function ProductCard({ product, onViewSpecs }: ProductCardProps) 
                 flex: 1,
                 padding: '8px 12px',
                 fontSize: '13px',
-                minHeight: '40px',
+                minHeight: '42px',
                 display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -214,8 +214,8 @@ export default function ProductCard({ product, onViewSpecs }: ProductCardProps) 
               href={productHref}
               className="btn btn-outline"
               style={{
-                padding: '8px 10px',
-                minHeight: '40px',
+                padding: '8px 12px',
+                minHeight: '42px',
                 display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -241,7 +241,7 @@ export default function ProductCard({ product, onViewSpecs }: ProductCardProps) 
               alignItems: 'center',
               justifyContent: 'center',
               gap: '6px',
-              padding: '2px 0'
+              padding: '6px 0'
             }}
             id={`btn-quote-${product.id}`}
             title={`Direct WhatsApp quotation for ${product.name}`}

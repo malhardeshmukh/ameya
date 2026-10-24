@@ -75,7 +75,7 @@ function ProductsCatalogContent() {
             <ChevronRight size={14} />
             <span>Industrial Products</span>
           </div>
-          <h1 className="sap-hero-title" style={{ fontSize: '36px', fontWeight: 600, marginBottom: '8px' }}>
+          <h1 className="sap-hero-title" style={{ fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 600, marginBottom: '8px' }}>
             Industrial Chemicals & Mineral Reagents Catalog
           </h1>
           <p className="sap-body" style={{ color: 'rgba(255, 255, 255, 0.85)', maxWidth: '720px' }}>
@@ -88,6 +88,7 @@ function ProductsCatalogContent() {
       <div className="container" style={{ paddingTop: 'var(--spacing-giant)', paddingBottom: 'var(--spacing-page)' }}>
         {/* Filter & Search Bar */}
         <div
+          className="products-filter-bar"
           style={{
             backgroundColor: 'var(--colors-chrome)',
             padding: 'var(--spacing-wide)',
@@ -102,7 +103,7 @@ function ProductsCatalogContent() {
           }}
         >
           {/* Keyword Search */}
-          <div style={{ position: 'relative', flex: '1 1 280px', maxWidth: '420px' }}>
+          <div className="products-filter-search" style={{ position: 'relative', flex: '1 1 280px', maxWidth: '420px' }}>
             <Search size={16} style={{ position: 'absolute', left: '12px', top: '12px', color: 'var(--colors-ink-meta)' }} />
             <input
               type="search"
@@ -124,8 +125,8 @@ function ProductsCatalogContent() {
           </div>
 
           {/* Category Dropdown */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-            <label htmlFor="filter-cat-select" className="sap-caption" style={{ fontWeight: 600, color: 'var(--colors-ink)' }}>
+          <div className="products-filter-selects" style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+            <label htmlFor="filter-cat-select" className="sap-caption filter-label" style={{ fontWeight: 600, color: 'var(--colors-ink)' }}>
               Category:
             </label>
             <select
@@ -150,7 +151,7 @@ function ProductsCatalogContent() {
             </select>
 
             {/* Physical Form Filter */}
-            <label htmlFor="filter-form-select" className="sap-caption" style={{ fontWeight: 600, color: 'var(--colors-ink)', marginLeft: '8px' }}>
+            <label htmlFor="filter-form-select" className="sap-caption filter-label" style={{ fontWeight: 600, color: 'var(--colors-ink)', marginLeft: '8px' }}>
               Form:
             </label>
             <select
@@ -175,7 +176,7 @@ function ProductsCatalogContent() {
         </div>
 
         {/* Results summary header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px' }}>
+        <div className="products-summary-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px' }}>
           <div style={{ fontSize: '15px', color: 'var(--colors-ink-body)' }}>
             Showing <strong>{filteredProducts.length}</strong> products matching criteria
           </div>
