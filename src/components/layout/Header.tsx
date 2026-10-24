@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { COMPANY_DATA } from '@/data/company';
 import { CATEGORIES } from '@/data/products';
+import { useQuote } from '@/components/quote/QuoteContext';
 import {
   Phone,
   Menu,
@@ -13,10 +14,12 @@ import {
   ChevronRight,
   Package,
   ArrowRight,
-  Layers
+  Layers,
+  ShoppingBag
 } from 'lucide-react';
 
 export default function Header() {
+  const { openCart, itemCount, badgePulse } = useQuote();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [desktopDropdownOpen, setDesktopDropdownOpen] = useState(false);
   const [activeCatId, setActiveCatId] = useState(CATEGORIES[0]?.id || 'potassium-silicate');
@@ -268,8 +271,34 @@ export default function Header() {
           })}
         </nav>
 
-        {/* Right Actions: Direct Phone Hotline & Mobile Menu Hamburger */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flexShrink: 0 }}>
+        {/* Right Actions: Quote Cart, Direct Phone Hotline & Mobile Menu Hamburger */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0 }}>
+          {/* Quote Cart Button with Live Bubble Indicator */}
+          <button
+            type="button"
+            onClick={openCart}
+            className="nav-cart-btn"
+            id="nav-quote-cart-btn"
+            title="Open Consolidated Quote Cart"
+            aria-label={`Open Quote Cart (${itemCount} items)`}
+          >
+            <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+              <ShoppingBag size={18} />
+              <span
+                className={`cart-bubble ${badgePulse ? 'cart-bubble-pulse' : ''}`}
+                style={{
+                  position: 'absolute',
+                  top: '-9px',
+                  right: '-10px',
+                  boxShadow: '0 2px 5px rgba(0,0,0,0.2)'
+                }}
+              >
+                {itemCount}
+              </span>
+            </div>
+            <span className="nav-cart-label">Quote Cart</span>
+          </button>
+
           {/* Direct Sales Hotline */}
           <a
             href={`tel:${COMPANY_DATA.phone}`}
@@ -645,6 +674,38 @@ export default function Header() {
           }}
           className="mobile-drawer-menu"
         >
+          {/* Mobile Quote Cart Action Banner */}
+          <button
+            type="button"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              openCart();
+            }}
+            style={{
+              width: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              padding: '12px 16px',
+              backgroundColor: 'var(--colors-band-blue)',
+              color: 'var(--colors-primary-deep)',
+              border: '1px solid rgba(0, 87, 210, 0.3)',
+              borderRadius: 'var(--rounded-md)',
+              fontWeight: 600,
+              fontSize: '14px',
+              cursor: 'pointer',
+              marginBottom: '6px'
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <ShoppingBag size={18} color="var(--colors-primary)" />
+              <span>Consolidated Quote Cart</span>
+            </div>
+            <span className="cart-bubble" style={{ minWidth: '22px', height: '22px', fontSize: '12px' }}>
+              {itemCount}
+            </span>
+          </button>
+
           {navLinks.map((link) => {
             if (link.label === 'Products') {
               return (

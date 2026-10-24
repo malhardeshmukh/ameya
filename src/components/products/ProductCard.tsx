@@ -6,7 +6,7 @@ import { Product } from '@/data/products';
 import { useQuote } from '../quote/QuoteContext';
 import { getWhatsAppQuoteUrl } from '@/data/company';
 import WhatsAppIcon from '@/components/ui/WhatsAppIcon';
-import { FileText, Send, Check, Info, Sparkles, ExternalLink } from 'lucide-react';
+import { FileText, Send, Check, Info, Sparkles, ExternalLink, ShoppingBag } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
@@ -14,8 +14,8 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, onViewSpecs }: ProductCardProps) {
-  const { openQuote, addItem, items } = useQuote();
-  const isAdded = items.some(i => i.product.id === product.id);
+  const { addItem, isInCart, openCart } = useQuote();
+  const isAdded = isInCart(product.id);
 
   // Extract key specs to display
   const keySpecs = Object.entries(product.specs).slice(0, 3);
@@ -177,49 +177,78 @@ export default function ProductCard({ product, onViewSpecs }: ProductCardProps) 
         <div
           style={{
             display: 'flex',
+            flexDirection: 'column',
             gap: '8px',
             marginTop: 'auto'
           }}
         >
+          <div style={{ display: 'flex', gap: '8px' }}>
+            <button
+              type="button"
+              onClick={() => {
+                if (isAdded) {
+                  openCart();
+                } else {
+                  addItem(product, '1000 Kg', '250 kg Heavy-Duty HDPE Drums', '', true);
+                }
+              }}
+              className="btn btn-primary"
+              style={{
+                flex: 1,
+                padding: '8px 12px',
+                fontSize: '13px',
+                minHeight: '40px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '6px'
+              }}
+              id={`btn-cart-${product.id}`}
+              title={`Add ${product.name} to consolidated quote cart`}
+            >
+              <ShoppingBag size={14} />
+              <span>{isAdded ? 'In Cart • View' : '+ Quote Cart'}</span>
+            </button>
+
+            <Link
+              href={productHref}
+              className="btn btn-outline"
+              style={{
+                padding: '8px 10px',
+                minHeight: '40px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                textDecoration: 'none'
+              }}
+              title={`View dedicated page for ${product.name}`}
+              aria-label={`View dedicated page for ${product.name}`}
+            >
+              <Info size={16} />
+            </Link>
+          </div>
+
           <a
             href={getWhatsAppQuoteUrl({ product })}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn btn-primary"
             style={{
-              flex: 1,
-              padding: '8px 12px',
-              fontSize: '13px',
-              minHeight: '40px',
+              fontSize: '12px',
+              color: '#16a34a',
               textDecoration: 'none',
+              fontWeight: 600,
               display: 'inline-flex',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '6px'
+              gap: '6px',
+              padding: '2px 0'
             }}
             id={`btn-quote-${product.id}`}
-            title={`Request quotation for ${product.name} on WhatsApp`}
+            title={`Direct WhatsApp quotation for ${product.name}`}
           >
-            <WhatsAppIcon size={15} color="#ffffff" />
-            <span>Request Quote</span>
+            <WhatsAppIcon size={14} color="#16a34a" />
+            <span>Direct WhatsApp Quote</span>
           </a>
-
-          <Link
-            href={productHref}
-            className="btn btn-outline"
-            style={{
-              padding: '8px 10px',
-              minHeight: '40px',
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              textDecoration: 'none'
-            }}
-            title={`View dedicated page for ${product.name}`}
-            aria-label={`View dedicated page for ${product.name}`}
-          >
-            <Info size={16} />
-          </Link>
         </div>
       </div>
     </article>

@@ -23,11 +23,12 @@ import {
   Phone,
   Layers,
   FileText,
-  Star
+  Star,
+  ShoppingBag
 } from 'lucide-react';
 
 export default function HomePage() {
-  const { openQuote } = useQuote();
+  const { openCart, itemCount } = useQuote();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   return (
@@ -131,6 +132,32 @@ export default function HomePage() {
               >
                 <WhatsAppIcon size={18} color="#16a34a" /> Request Factory Quote (WhatsApp)
               </a>
+
+              {itemCount > 0 && (
+                <button
+                  type="button"
+                  onClick={openCart}
+                  className="btn"
+                  style={{
+                    backgroundColor: '#16a34a',
+                    color: '#ffffff',
+                    border: 'none',
+                    padding: '12px 20px',
+                    minHeight: '44px',
+                    borderRadius: 'var(--rounded-md)',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
+                  }}
+                  id="hero-view-cart-btn"
+                >
+                  <ShoppingBag size={18} />
+                  <span>View Quote Cart ({itemCount})</span>
+                </button>
+              )}
 
               <Link
                 href="/products"

@@ -3,7 +3,7 @@
 import React from 'react';
 import { Product } from '@/data/products';
 import { useQuote } from '../quote/QuoteContext';
-import { X, Send, ShieldCheck, Factory, FileSpreadsheet } from 'lucide-react';
+import { X, Send, ShieldCheck, Factory, FileSpreadsheet, ShoppingBag } from 'lucide-react';
 import { COMPANY_DATA, getWhatsAppQuoteUrl } from '@/data/company';
 import WhatsAppIcon from '@/components/ui/WhatsAppIcon';
 
@@ -13,7 +13,7 @@ interface ProductSpecsModalProps {
 }
 
 export default function ProductSpecsModal({ product, onClose }: ProductSpecsModalProps) {
-  const { openQuote } = useQuote();
+  const { addItem } = useQuote();
 
   if (!product) return null;
 
@@ -172,9 +172,20 @@ export default function ProductSpecsModal({ product, onClose }: ProductSpecsModa
         </div>
 
         {/* Modal footer */}
-        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', borderTop: '1px solid var(--colors-border-subtle)', paddingTop: '16px' }}>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', borderTop: '1px solid var(--colors-border-subtle)', paddingTop: '16px', flexWrap: 'wrap' }}>
           <button type="button" onClick={onClose} className="btn btn-outline">
             Close
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              onClose();
+              addItem(product, '1000 Kg', '250 kg Heavy-Duty HDPE Drums', '', true);
+            }}
+            className="btn btn-secondary"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+          >
+            <ShoppingBag size={15} /> + Add to Quote Cart
           </button>
           <a
             href={getWhatsAppQuoteUrl({ product })}

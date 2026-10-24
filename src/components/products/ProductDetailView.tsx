@@ -26,7 +26,8 @@ import {
   Clock,
   ExternalLink,
   MessageCircle,
-  HelpCircle
+  HelpCircle,
+  ShoppingBag
 } from 'lucide-react';
 
 interface ProductDetailViewProps {
@@ -40,7 +41,7 @@ export default function ProductDetailView({
   category,
   relatedProducts
 }: ProductDetailViewProps) {
-  const { openQuote } = useQuote();
+  const { addItem, isInCart, openCart } = useQuote();
 
   // Quantity estimator state
   const [selectedQty, setSelectedQty] = useState('1000'); // 1000 Kg / 1 Tonne default
@@ -541,46 +542,84 @@ export default function ProductDetailView({
                 )}
 
                 {/* Action Buttons */}
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-                  <a
-                    href={whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-primary"
-                    style={{
-                      flex: 1,
-                      minWidth: '220px',
-                      minHeight: '46px',
-                      fontSize: '14px',
-                      fontWeight: 600,
-                      textDecoration: 'none',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '8px'
-                    }}
-                    id="btn-request-formal-quote"
-                    title={`Request formal quotation for ${product.name} on WhatsApp`}
-                  >
-                    <WhatsAppIcon size={18} color="#ffffff" />
-                    <span>Request Official Quotation</span>
-                  </a>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (isInCart(product.id)) {
+                          openCart();
+                        } else {
+                          addItem(product, `${selectedQty} Kg`, selectedPackaging, '', true);
+                        }
+                      }}
+                      className="btn"
+                      style={{
+                        flex: 1,
+                        minWidth: '220px',
+                        minHeight: '46px',
+                        fontSize: '14px',
+                        fontWeight: 600,
+                        backgroundColor: 'var(--colors-primary-deep)',
+                        color: 'var(--colors-on-primary)',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '8px',
+                        borderRadius: 'var(--rounded-md)',
+                        border: 'none',
+                        cursor: 'pointer'
+                      }}
+                      id="btn-add-to-quote-cart"
+                      title={`Add ${selectedQty} Kg to consolidated quote cart`}
+                    >
+                      <ShoppingBag size={17} />
+                      <span>{isInCart(product.id) ? 'In Quote Cart • View Cart' : `Add ${selectedQty} Kg to Quote Cart`}</span>
+                    </button>
+
+                    <a
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn"
+                      style={{
+                        minHeight: '46px',
+                        padding: '10px 18px',
+                        fontSize: '14px',
+                        fontWeight: 600,
+                        backgroundColor: '#16a34a',
+                        color: '#ffffff',
+                        textDecoration: 'none',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '8px',
+                        borderRadius: 'var(--rounded-md)'
+                      }}
+                      id="btn-request-formal-quote"
+                      title={`Instant WhatsApp quote for ${product.name}`}
+                    >
+                      <WhatsAppIcon size={18} color="#ffffff" />
+                      <span>WhatsApp Single Quote</span>
+                    </a>
+                  </div>
 
                   <a
                     href={`tel:${COMPANY_DATA.phone}`}
                     className="btn btn-outline"
                     style={{
-                      minHeight: '46px',
+                      minHeight: '40px',
                       padding: '8px 16px',
-                      fontSize: '14px',
+                      fontSize: '13px',
                       display: 'inline-flex',
                       alignItems: 'center',
+                      justifyContent: 'center',
                       gap: '6px'
                     }}
                     id="btn-call-sales-desk"
                   >
-                    <Phone size={15} color="var(--colors-primary)" />
-                    <span>Call Sales Desk</span>
+                    <Phone size={14} color="var(--colors-primary)" />
+                    <span>Call Factory Sales Desk: {COMPANY_DATA.formattedPhone}</span>
                   </a>
                 </div>
               </div>
