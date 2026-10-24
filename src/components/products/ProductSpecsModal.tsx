@@ -4,7 +4,8 @@ import React from 'react';
 import { Product } from '@/data/products';
 import { useQuote } from '../quote/QuoteContext';
 import { X, Send, ShieldCheck, Factory, FileSpreadsheet } from 'lucide-react';
-import { COMPANY_DATA } from '@/data/company';
+import { COMPANY_DATA, getWhatsAppQuoteUrl } from '@/data/company';
+import WhatsAppIcon from '@/components/ui/WhatsAppIcon';
 
 interface ProductSpecsModalProps {
   product: Product | null;
@@ -175,16 +176,16 @@ export default function ProductSpecsModal({ product, onClose }: ProductSpecsModa
           <button type="button" onClick={onClose} className="btn btn-outline">
             Close
           </button>
-          <button
-            type="button"
-            onClick={() => {
-              onClose();
-              openQuote(product);
-            }}
+          <a
+            href={getWhatsAppQuoteUrl({ product })}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={onClose}
             className="btn btn-primary"
+            style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
           >
-            <Send size={15} /> Request Formal Price Quote
-          </button>
+            <WhatsAppIcon size={16} color="#ffffff" /> Request Quote on WhatsApp
+          </a>
         </div>
       </div>
     </div>

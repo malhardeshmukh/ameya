@@ -14,7 +14,8 @@ import {
   FileText,
   BadgeCheck
 } from 'lucide-react';
-import { COMPANY_DATA } from '@/data/company';
+import { COMPANY_DATA, getWhatsAppQuoteUrl } from '@/data/company';
+import WhatsAppIcon from '@/components/ui/WhatsAppIcon';
 
 export default function QualityPage() {
   const { openQuote } = useQuote();
@@ -172,13 +173,16 @@ export default function QualityPage() {
           <p className="sap-body" style={{ color: 'var(--colors-ink-body)', marginBottom: '24px' }}>
             We provide full technical data sheets, Material Safety Data Sheets (MSDS), and batch inspection reports tailored to your plant&apos;s procurement standards.
           </p>
-          <button
-            onClick={() => openQuote()}
+          <a
+            href={getWhatsAppQuoteUrl({ intent: 'Batch COA & Technical Data Sheet Request' })}
+            target="_blank"
+            rel="noopener noreferrer"
             className="btn btn-primary"
-            style={{ minHeight: '44px', padding: '10px 24px' }}
+            style={{ minHeight: '44px', padding: '10px 24px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
           >
-            <FileText size={16} /> Request Batch COA & Technical Data Sheet
-          </button>
+            <WhatsAppIcon size={18} color="#ffffff" />
+            <span>Request Batch COA via WhatsApp</span>
+          </a>
         </div>
       </section>
     </>

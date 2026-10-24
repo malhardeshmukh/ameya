@@ -2,12 +2,13 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { COMPANY_DATA } from '@/data/company';
+import { COMPANY_DATA, getWhatsAppQuoteUrl } from '@/data/company';
 import { CATEGORIES, FEATURED_PRODUCTS, Product } from '@/data/products';
 import { TESTIMONIALS } from '@/data/testimonials';
 import ProductCard from '@/components/products/ProductCard';
 import ProductSpecsModal from '@/components/products/ProductSpecsModal';
 import { useQuote } from '@/components/quote/QuoteContext';
+import WhatsAppIcon from '@/components/ui/WhatsAppIcon';
 import {
   ArrowRight,
   ShieldCheck,
@@ -107,9 +108,10 @@ export default function HomePage() {
 
             {/* Action Buttons */}
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginBottom: '36px' }} className="hero-cta-group">
-              <button
-                type="button"
-                onClick={() => openQuote()}
+              <a
+                href={getWhatsAppQuoteUrl({ intent: 'Direct Factory Quotation & Product Catalog' })}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn"
                 style={{
                   backgroundColor: 'var(--colors-canvas)',
@@ -119,12 +121,16 @@ export default function HomePage() {
                   minHeight: '44px',
                   borderRadius: 'var(--rounded-md)',
                   border: 'none',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                  textDecoration: 'none',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px'
                 }}
                 id="hero-request-quote-btn"
               >
-                <FileText size={17} /> Request Direct Factory Quote
-              </button>
+                <WhatsAppIcon size={18} color="#16a34a" /> Request Factory Quote (WhatsApp)
+              </a>
 
               <Link
                 href="/products"

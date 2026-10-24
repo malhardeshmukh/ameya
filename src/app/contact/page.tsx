@@ -2,8 +2,9 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { COMPANY_DATA } from '@/data/company';
+import { COMPANY_DATA, getWhatsAppQuoteUrl } from '@/data/company';
 import { useQuote } from '@/components/quote/QuoteContext';
+import WhatsAppIcon from '@/components/ui/WhatsAppIcon';
 import {
   MapPin,
   Phone,
@@ -33,6 +34,11 @@ export default function ContactPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
+    const msg = `Hello Ameyaa Industries,\n\nI am contacting you from the website:\n*Name:* ${inquiry.name}\n*Phone:* ${inquiry.phone}\n*Email:* ${inquiry.email}\n*Product Interest:* ${inquiry.product}${inquiry.company ? `\n*Company:* ${inquiry.company}` : ''}${inquiry.message ? `\n*Message:* ${inquiry.message}` : ''}`;
+    const url = `https://wa.me/${COMPANY_DATA.whatsappNumber || '917942784628'}?text=${encodeURIComponent(msg)}`;
+    if (typeof window !== 'undefined') {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
   };
 
   return (
@@ -178,14 +184,16 @@ export default function ContactPage() {
                     Get formal pricing with COA and spec sheets via our dedicated RFQ system.
                   </div>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => openQuote()}
+                <a
+                  href={getWhatsAppQuoteUrl({ intent: 'Chemical Product Quotation & RFQ' })}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="btn btn-primary"
-                  style={{ minHeight: '36px', padding: '6px 14px', fontSize: '13px', flexShrink: 0 }}
+                  style={{ minHeight: '36px', padding: '6px 14px', fontSize: '13px', flexShrink: 0, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
                 >
-                  Open RFQ Basket
-                </button>
+                  <WhatsAppIcon size={15} color="#ffffff" />
+                  <span>Request Quote on WhatsApp</span>
+                </a>
               </div>
 
               <h3 className="sap-subhead" style={{ fontSize: '20px', fontWeight: 600, marginBottom: '6px' }}>
@@ -199,14 +207,26 @@ export default function ContactPage() {
                 <div style={{ textAlign: 'center', padding: '36px 12px' }}>
                   <CheckCircle2 size={44} color="var(--colors-success)" style={{ margin: '0 auto 12px auto' }} />
                   <h4 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '8px' }}>
-                    Message Transmitted Successfully
+                    Inquiry Transmitted to WhatsApp Desk
                   </h4>
                   <p className="sap-caption" style={{ marginBottom: '20px' }}>
-                    Thank you {inquiry.name}. A representative from Ameyaa Industries will respond shortly.
+                    Thank you {inquiry.name}. Your details were transmitted. If your WhatsApp did not open automatically, click below:
                   </p>
-                  <button onClick={() => setSubmitted(false)} className="btn btn-outline">
-                    Send Another Message
-                  </button>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
+                    <a
+                      href={`https://wa.me/${COMPANY_DATA.whatsappNumber || '917942784628'}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-primary"
+                      style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+                    >
+                      <WhatsAppIcon size={18} color="#ffffff" />
+                      <span>Chat on WhatsApp Directly</span>
+                    </a>
+                    <button onClick={() => setSubmitted(false)} className="btn btn-outline">
+                      Send Another Message
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -307,8 +327,9 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  <button type="submit" className="btn btn-primary" style={{ width: '100%', minHeight: '44px' }}>
-                    <Send size={16} /> Submit Message
+                  <button type="submit" className="btn btn-primary" style={{ width: '100%', minHeight: '44px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+                    <WhatsAppIcon size={16} color="#ffffff" />
+                    <span>Submit Message via WhatsApp</span>
                   </button>
                 </form>
               )}

@@ -1,12 +1,12 @@
 'use client';
 
 import React from 'react';
-import { useQuote } from '../quote/QuoteContext';
-import { COMPANY_DATA } from '@/data/company';
-import { MessageSquareText, PhoneCall } from 'lucide-react';
+import { COMPANY_DATA, getWhatsAppQuoteUrl } from '@/data/company';
+import { PhoneCall } from 'lucide-react';
+import WhatsAppIcon from '@/components/ui/WhatsAppIcon';
 
 export default function FloatingContact() {
-  const { openQuote } = useQuote();
+  const whatsappUrl = getWhatsAppQuoteUrl({ intent: 'Instant Commercial Quotation & Batch COA' });
 
   return (
     <div className="floating-contact-container">
@@ -19,16 +19,27 @@ export default function FloatingContact() {
         <span className="floating-btn-text">Call Plant</span>
       </a>
 
-      <button
-        onClick={() => openQuote()}
+      <a
+        href={whatsappUrl}
+        target="_blank"
+        rel="noopener noreferrer"
         className="btn-floating floating-quote-btn"
         id="floating-rfq-btn"
-        title="Request Commercial Quote"
+        title="Request Commercial Quote on WhatsApp"
+        style={{
+          textDecoration: 'none',
+          backgroundColor: '#16a34a',
+          color: '#ffffff',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '8px'
+        }}
       >
-        <MessageSquareText size={20} />
-        <span className="floating-quote-full">Request Instant Quote</span>
-        <span className="floating-quote-short">Quote</span>
-      </button>
+        <WhatsAppIcon size={22} color="#ffffff" />
+        <span className="floating-quote-full">WhatsApp Quote</span>
+        <span className="floating-quote-short">WhatsApp</span>
+      </a>
     </div>
   );
 }
+

@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { Product } from '@/data/products';
+import { getWhatsAppQuoteUrl } from '@/data/company';
 
 export interface QuoteItem {
   product: Product;
@@ -13,7 +14,7 @@ interface QuoteContextType {
   isOpen: boolean;
   selectedProduct: Product | null;
   items: QuoteItem[];
-  openQuote: (product?: Product) => void;
+  openQuote: (product?: Product, customMessage?: string) => void;
   closeQuote: () => void;
   addItem: (product: Product, quantity?: string) => void;
   removeItem: (productId: string) => void;
@@ -27,7 +28,7 @@ export function QuoteProvider({ children }: { children: ReactNode }) {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [items, setItems] = useState<QuoteItem[]>([]);
 
-  const openQuote = (product?: Product) => {
+  const openQuote = (product?: Product, customMessage?: string) => {
     if (product) {
       setSelectedProduct(product);
       // Also add to items if not already present
@@ -35,6 +36,12 @@ export function QuoteProvider({ children }: { children: ReactNode }) {
         setItems(prev => [...prev, { product, quantity: '1000 Kg' }]);
       }
     }
+
+    const whatsappUrl = getWhatsAppQuoteUrl({ product, customMessage });
+    if (typeof window !== 'undefined') {
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    }
+
     setIsOpen(true);
   };
 

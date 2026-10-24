@@ -2,8 +2,9 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { COMPANY_DATA } from '@/data/company';
+import { COMPANY_DATA, getWhatsAppQuoteUrl } from '@/data/company';
 import { useQuote } from '@/components/quote/QuoteContext';
+import WhatsAppIcon from '@/components/ui/WhatsAppIcon';
 import {
   Building2,
   Users,
@@ -185,13 +186,16 @@ export default function ProfilePage() {
               </div>
 
               <div style={{ marginTop: '20px' }}>
-                <button
-                  onClick={() => openQuote()}
+                <a
+                  href={getWhatsAppQuoteUrl({ intent: 'Bulk Industrial Partnership & Supply Agreement' })}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="btn btn-primary"
-                  style={{ width: '100%' }}
+                  style={{ width: '100%', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
                 >
-                  Contact Management for Bulk Partnership
-                </button>
+                  <WhatsAppIcon size={18} color="#ffffff" />
+                  <span>Contact Management via WhatsApp</span>
+                </a>
               </div>
             </div>
           </div>

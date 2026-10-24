@@ -7,6 +7,8 @@ export interface CompanyProfile {
   iec: string;
   phone: string;
   formattedPhone: string;
+  whatsappNumber: string;
+  whatsappDisplay: string;
   email: string;
   registeredAddress: {
     line1: string;
@@ -51,6 +53,8 @@ export const COMPANY_DATA: CompanyProfile = {
   iec: "ACAFA0567E",
   phone: "+917942784628",
   formattedPhone: "+91 79427 84628",
+  whatsappNumber: "917942784628",
+  whatsappDisplay: "+91 79427 84628",
   email: "sales@ameyaaindustries.co.in",
   registeredAddress: {
     line1: "9, D/901, Ganesh Glory-II",
@@ -114,3 +118,64 @@ export const COMPANY_DATA: CompanyProfile = {
     "MSME Registered Enterprise"
   ]
 };
+
+export interface WhatsAppQuoteOptions {
+  product?: {
+    name?: string;
+    price?: string;
+    categoryName?: string;
+    id?: string;
+  };
+  quantity?: string | number;
+  packaging?: string;
+  destination?: string;
+  intent?: string;
+  customMessage?: string;
+  buyerName?: string;
+  companyName?: string;
+  notes?: string;
+}
+
+export function getWhatsAppQuoteUrl(options?: WhatsAppQuoteOptions): string {
+  const number = COMPANY_DATA.whatsappNumber || "917942784628";
+
+  if (options?.customMessage) {
+    return `https://wa.me/${number}?text=${encodeURIComponent(options.customMessage)}`;
+  }
+
+  let text = `Hello Ameyaa Industries,\n\nI would like to request an official commercial quotation.`;
+
+  if (options?.product?.name) {
+    text = `Hello Ameyaa Industries,\n\nI would like to request an official commercial quotation for:\n*${options.product.name}*`;
+    if (options.product.price) {
+      text += `\n*Listed Price:* ${options.product.price}`;
+    }
+  } else if (options?.intent) {
+    text = `Hello Ameyaa Industries,\n\nI would like to make an inquiry regarding: *${options.intent}*`;
+  }
+
+  if (options?.quantity) {
+    text += `\n*Required Quantity:* ${options.quantity}`;
+  }
+
+  if (options?.packaging) {
+    text += `\n*Packaging Preference:* ${options.packaging}`;
+  }
+
+  if (options?.destination) {
+    text += `\n*Delivery Destination:* ${options.destination}`;
+  }
+
+  if (options?.buyerName || options?.companyName) {
+    text += `\n*Buyer / Company:* ${[options.buyerName, options.companyName].filter(Boolean).join(' - ')}`;
+  }
+
+  if (options?.notes) {
+    text += `\n*Specifications / Requirements:* ${options.notes}`;
+  }
+
+  text += `\n\nPlease provide best commercial pricing, ex-factory / CIF terms, and Certificate of Analysis (COA).`;
+
+  return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
+}
+

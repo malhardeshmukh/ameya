@@ -136,7 +136,7 @@ export default async function CategoryPage({ params }: Props) {
                 Available Grades & Specifications ({currentCategory.products.length})
               </h2>
               <p className="sap-caption" style={{ color: 'var(--colors-ink-lead)', marginTop: '4px' }}>
-                Click &quot;Get Best Quote&quot; on any item to initiate a direct factory price inquiry.
+                Click &quot;Request Quote&quot; on any item to initiate a direct factory WhatsApp inquiry.
               </p>
             </div>
           </div>

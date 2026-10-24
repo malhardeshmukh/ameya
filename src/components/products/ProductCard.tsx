@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { Product } from '@/data/products';
 import { useQuote } from '../quote/QuoteContext';
+import { getWhatsAppQuoteUrl } from '@/data/company';
+import WhatsAppIcon from '@/components/ui/WhatsAppIcon';
 import { FileText, Send, Check, Info, Sparkles, ExternalLink } from 'lucide-react';
 
 interface ProductCardProps {
@@ -179,21 +181,28 @@ export default function ProductCard({ product, onViewSpecs }: ProductCardProps) 
             marginTop: 'auto'
           }}
         >
-          <button
-            type="button"
-            onClick={() => openQuote(product)}
+          <a
+            href={getWhatsAppQuoteUrl({ product })}
+            target="_blank"
+            rel="noopener noreferrer"
             className="btn btn-primary"
             style={{
               flex: 1,
               padding: '8px 12px',
               fontSize: '13px',
-              minHeight: '40px'
+              minHeight: '40px',
+              textDecoration: 'none',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '6px'
             }}
             id={`btn-quote-${product.id}`}
+            title={`Request quotation for ${product.name} on WhatsApp`}
           >
-            <Send size={13} />
-            <span>Get Best Quote</span>
-          </button>
+            <WhatsAppIcon size={15} color="#ffffff" />
+            <span>Request Quote</span>
+          </a>
 
           <Link
             href={productHref}

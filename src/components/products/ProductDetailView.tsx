@@ -3,9 +3,10 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Product, ProductCategory } from '@/data/products';
-import { COMPANY_DATA } from '@/data/company';
+import { COMPANY_DATA, getWhatsAppQuoteUrl } from '@/data/company';
 import { useQuote } from '@/components/quote/QuoteContext';
 import ProductCard from '@/components/products/ProductCard';
+import WhatsAppIcon from '@/components/ui/WhatsAppIcon';
 import {
   ChevronRight,
   ShieldCheck,
@@ -82,15 +83,29 @@ export default function ProductDetailView({
     }
   };
 
+  // Pre-fill WhatsApp message
+  const whatsappUrl = getWhatsAppQuoteUrl({
+    product,
+    quantity: `${selectedQty} Kg`,
+    packaging: selectedPackaging
+  });
+
   const handleInlineSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmittedInline(true);
+    const inlineUrl = getWhatsAppQuoteUrl({
+      product,
+      quantity: `${selectedQty} Kg`,
+      packaging: selectedPackaging,
+      buyerName: inlineForm.name,
+      companyName: inlineForm.company,
+      destination: inlineForm.location,
+      notes: `Phone: ${inlineForm.phone}, Email: ${inlineForm.email}${inlineForm.message ? ` - ${inlineForm.message}` : ''}`
+    });
+    if (typeof window !== 'undefined') {
+      window.open(inlineUrl, '_blank', 'noopener,noreferrer');
+    }
   };
-
-  // Pre-fill WhatsApp message
-  const whatsappUrl = `https://wa.me/919427607773?text=${encodeURIComponent(
-    `Hello Ameyaa Industries, I would like to inquire about ${product.name} (${product.price}). Required quantity: ${selectedQty} Kg, Packaging: ${selectedPackaging}. Please provide commercial quote & COA.`
-  )}`;
 
   const specEntries = Object.entries(product.specs);
 
@@ -345,7 +360,7 @@ export default function ProductDetailView({
                   }}
                   id="product-whatsapp-inquiry-btn"
                 >
-                  <MessageCircle size={15} />
+                  <WhatsAppIcon size={16} color="#ffffff" />
                   <span>WhatsApp</span>
                 </a>
               </div>
@@ -527,22 +542,29 @@ export default function ProductDetailView({
 
                 {/* Action Buttons */}
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-                  <button
-                    type="button"
-                    onClick={() => openQuote(product)}
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="btn btn-primary"
                     style={{
                       flex: 1,
                       minWidth: '220px',
                       minHeight: '46px',
                       fontSize: '14px',
-                      fontWeight: 600
+                      fontWeight: 600,
+                      textDecoration: 'none',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '8px'
                     }}
                     id="btn-request-formal-quote"
+                    title={`Request formal quotation for ${product.name} on WhatsApp`}
                   >
-                    <Send size={15} />
+                    <WhatsAppIcon size={18} color="#ffffff" />
                     <span>Request Official Quotation</span>
-                  </button>
+                  </a>
 
                   <a
                     href={`tel:${COMPANY_DATA.phone}`}
@@ -848,11 +870,21 @@ export default function ProductDetailView({
                 <div style={{ padding: '24px', backgroundColor: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: 'var(--rounded-md)', textAlign: 'center' }}>
                   <CheckCircle2 size={36} color="#16a34a" style={{ margin: '0 auto 12px auto' }} />
                   <div style={{ fontWeight: 700, fontSize: '16px', color: '#166534' }}>
-                    Inquiry Transmitted Successfully!
+                    Inquiry Transmitted to WhatsApp Desk!
                   </div>
-                  <p style={{ fontSize: '13px', color: '#15803d', marginTop: '6px' }}>
-                    Thank you. Reference ID: <strong>RFQ-{Math.floor(100000 + Math.random() * 900000)}</strong>. Our commercial desk will contact you shortly with the formal proforma invoice.
+                  <p style={{ fontSize: '13px', color: '#15803d', marginTop: '6px', marginBottom: '16px' }}>
+                    Your inquiry details have been pre-filled for WhatsApp. Click below if your chat window did not open automatically.
                   </p>
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-primary"
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}
+                  >
+                    <WhatsAppIcon size={18} color="#ffffff" />
+                    <span>Open in WhatsApp</span>
+                  </a>
                 </div>
               ) : (
                 <form onSubmit={handleInlineSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
@@ -926,9 +958,10 @@ export default function ProductDetailView({
                   <button
                     type="submit"
                     className="btn btn-primary"
-                    style={{ padding: '10px 20px', alignSelf: 'flex-start', minHeight: '44px' }}
+                    style={{ padding: '10px 20px', alignSelf: 'flex-start', minHeight: '44px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
                   >
-                    Submit Formal RFQ
+                    <WhatsAppIcon size={16} color="#ffffff" />
+                    <span>Submit Formal RFQ via WhatsApp</span>
                   </button>
                 </form>
               )}

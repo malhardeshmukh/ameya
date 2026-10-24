@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useQuote } from './QuoteContext';
 import { X, CheckCircle2, Building2, Phone, Mail, FileText, Send, ShieldCheck, Trash2 } from 'lucide-react';
 import { COMPANY_DATA } from '@/data/company';
+import WhatsAppIcon from '@/components/ui/WhatsAppIcon';
 
 export default function QuoteModal() {
   const { isOpen, closeQuote, items, removeItem, clearItems, selectedProduct } = useQuote();
@@ -27,6 +28,19 @@ export default function QuoteModal() {
     const generatedId = `RFQ-AMY-${Math.floor(100000 + Math.random() * 900000)}`;
     setRfqNumber(generatedId);
     setSubmitted(true);
+
+    const itemsSummary = items.length > 0
+      ? items.map(it => `• ${it.product.name} (${it.product.price}) - Qty: ${it.quantity || '1000 Kg'}`).join('\n')
+      : selectedProduct
+        ? `• ${selectedProduct.name} (${selectedProduct.price})`
+        : 'General Chemical Inquiry';
+
+    const text = `Hello Ameyaa Industries,\n\nI would like to request an official quotation (${generatedId}):\n\n*Chemical Products:*\n${itemsSummary}\n\n*Buyer Name:* ${formData.name}\n*Company:* ${formData.company || 'Direct Buyer'}\n*Phone:* ${formData.phone}\n*Email:* ${formData.email}\n*Destination:* ${formData.destination || 'Ahmedabad / CIF Port'}\n*Packaging Preference:* ${formData.packaging}\n${formData.notes ? `*Technical Notes:* ${formData.notes}\n` : ''}\nPlease provide formal CIF / Ex-factory commercial quotation & batch COA.`;
+
+    const url = `https://wa.me/${COMPANY_DATA.whatsappNumber || '917942784628'}?text=${encodeURIComponent(text)}`;
+    if (typeof window !== 'undefined') {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
   };
 
   const handleReset = () => {
@@ -138,12 +152,24 @@ export default function QuoteModal() {
               <div><strong>Requested Chemicals:</strong> {items.map(i => i.product.name).join(', ') || 'Custom Grade'}</div>
               <div><strong>Dispatch Port / Hub:</strong> Kandla / Mundra Port / Ahmedabad Factory</div>
             </div>
-            <p className="sap-caption" style={{ marginBottom: '24px' }}>
-              A technical sales specialist from Ameyaa Industries will email the formal Proforma Invoice and Certificate of Analysis (COA) to {formData.email || 'your email'}.
+            <p className="sap-caption" style={{ marginBottom: '20px' }}>
+              Your inquiry has been formulated and sent to our WhatsApp sales desk. You can also chat directly below.
             </p>
-            <button className="btn btn-primary" onClick={handleReset} style={{ width: '100%', maxWidth: '280px' }}>
-              Done & Return to Catalog
-            </button>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
+              <a
+                href={`https://wa.me/${COMPANY_DATA.whatsappNumber || '917942784628'}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary"
+                style={{ width: '100%', maxWidth: '300px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', minHeight: '44px', textDecoration: 'none' }}
+              >
+                <WhatsAppIcon size={18} color="#ffffff" />
+                <span>Chat on WhatsApp Directly</span>
+              </a>
+              <button className="btn btn-outline" onClick={handleReset} style={{ width: '100%', maxWidth: '300px' }}>
+                Done & Return to Catalog
+              </button>
+            </div>
           </div>
         ) : (
           <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
@@ -391,8 +417,8 @@ export default function QuoteModal() {
                 <button type="button" onClick={closeQuote} className="btn btn-outline" style={{ minHeight: '44px' }}>
                   Cancel
                 </button>
-                <button type="submit" className="btn btn-primary" style={{ minHeight: '44px' }} id="rfq-submit-btn">
-                  <Send size={16} /> Submit Quotation Request
+                <button type="submit" className="btn btn-primary" style={{ minHeight: '44px', display: 'inline-flex', alignItems: 'center', gap: '8px' }} id="rfq-submit-btn">
+                  <WhatsAppIcon size={16} color="#ffffff" /> Submit RFQ via WhatsApp
                 </button>
               </div>
             </div>

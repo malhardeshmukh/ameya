@@ -2,9 +2,10 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { COMPANY_DATA } from '@/data/company';
+import { COMPANY_DATA, getWhatsAppQuoteUrl } from '@/data/company';
 import { CATEGORIES } from '@/data/products';
 import { ShieldCheck, MapPin, Phone, Mail, Award, CheckCircle2, Globe, Building } from 'lucide-react';
+import WhatsAppIcon from '@/components/ui/WhatsAppIcon';
 
 export default function Footer() {
   return (
@@ -179,6 +180,17 @@ export default function Footer() {
                   style={{ color: 'var(--colors-ink)', textDecoration: 'none', fontWeight: 600 }}
                 >
                   {COMPANY_DATA.formattedPhone}
+                </a>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <WhatsAppIcon size={18} color="#16a34a" />
+                <a
+                  href={getWhatsAppQuoteUrl({ intent: 'Footer WhatsApp Commercial Desk' })}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: '#166534', textDecoration: 'none', fontWeight: 600 }}
+                >
+                  WhatsApp Quotation Desk
                 </a>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
