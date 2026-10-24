@@ -80,7 +80,7 @@ html {
   scroll-behavior: smooth;
   scrollbar-width: none !important;
   -ms-overflow-style: none !important;
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100%;
   width: 100%;
 }
@@ -93,7 +93,7 @@ body {
   color: var(--colors-ink-body);
   scrollbar-width: none !important;
   -ms-overflow-style: none !important;
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100%;
   width: 100%;
   position: relative;
@@ -102,7 +102,25 @@ body {
 main {
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+/* Sticky Header Specifications */
+header#main-enterprise-navbar,
+.sticky-header {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 500 !important;
+  background-color: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border-bottom: 1px solid var(--colors-border-subtle) !important;
+  width: 100% !important;
+}
+
+.sticky-header.is-scrolled {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
 }
 
 img, svg, video, canvas, audio, iframe, embed, object {

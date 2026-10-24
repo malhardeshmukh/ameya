@@ -101,6 +101,17 @@ export default function Header() {
     };
   }, []);
 
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    function handleScroll() {
+      setIsScrolled(window.scrollY > 4);
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <header
       style={{
@@ -109,10 +120,14 @@ export default function Header() {
         zIndex: 500,
         backgroundColor: 'rgba(255, 255, 255, 0.98)',
         backdropFilter: 'blur(8px)',
+        WebkitBackdropFilter: 'blur(8px)',
         borderBottom: '1px solid var(--colors-border-subtle)',
+        boxShadow: isScrolled ? '0 4px 20px rgba(0, 0, 0, 0.08)' : 'none',
+        transition: 'box-shadow 0.2s ease',
         width: '100%'
       }}
       id="main-enterprise-navbar"
+      className={`sticky-header ${isScrolled ? 'is-scrolled' : ''}`}
     >
       <div
         className="container"
