@@ -132,11 +132,7 @@ header#main-enterprise-navbar,
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
 }
 
-/* Scroll lock & touch containment when mobile navigation is active */
-body.mobile-nav-open {
-  touch-action: none;
-}
-
+/* Mobile navigation active state */
 body.mobile-nav-open .floating-contact-container {
   opacity: 0 !important;
   pointer-events: none !important;
@@ -570,31 +566,7 @@ textarea:focus-visible {
   color: var(--colors-primary);
 }
 
-.mobile-drawer-backdrop {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  height: 100dvh !important;
-  background-color: rgba(2, 40, 121, 0.45) !important;
-  backdrop-filter: blur(3px) !important;
-  -webkit-backdrop-filter: blur(3px) !important;
-  z-index: 996 !important;
-  touch-action: none !important;
-  animation: mobileBackdropFade 0.2s ease !important;
-}
 
-@keyframes mobileBackdropFade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
 
 .mobile-drawer-menu {
   position: absolute !important;
@@ -626,8 +598,7 @@ textarea:focus-visible {
 
 @media (min-width: 1025px) {
   .mobile-menu-trigger,
-  .mobile-drawer-menu,
-  .mobile-drawer-backdrop {
+  .mobile-drawer-menu {
     display: none !important;
   }
 }

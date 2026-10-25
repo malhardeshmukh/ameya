@@ -30,6 +30,8 @@ export default function Header() {
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const closeTimerRef = useRef<NodeJS.Timeout | null>(null);
   const headerRef = useRef<HTMLElement | null>(null);
+  const mobileMenuRef = useRef<HTMLDivElement | null>(null);
+  const toggleBtnRef = useRef<HTMLButtonElement | null>(null);
   const [headerHeight, setHeaderHeight] = useState(70);
 
   const navLinks = [
@@ -87,8 +89,18 @@ export default function Header() {
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      const target = event.target as Node;
+      if (dropdownRef.current && !dropdownRef.current.contains(target)) {
         setDesktopDropdownOpen(false);
+      }
+      if (
+        mobileMenuOpen &&
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(target) &&
+        toggleBtnRef.current &&
+        !toggleBtnRef.current.contains(target)
+      ) {
+        setMobileMenuOpen(false);
       }
     }
     function handleKeyDown(event: KeyboardEvent) {
@@ -103,16 +115,16 @@ export default function Header() {
         setDesktopDropdownOpen(false);
       }
     }
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('click', handleClickOutside);
     document.addEventListener('keydown', handleKeyDown);
     window.addEventListener('resize', handleResize);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('click', handleClickOutside);
       document.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('resize', handleResize);
       if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
     };
-  }, []);
+  }, [mobileMenuOpen]);
 
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -373,6 +385,7 @@ export default function Header() {
 
           {/* Mobile Menu Hamburger */}
           <button
+            ref={toggleBtnRef}
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className={`mobile-menu-trigger ${mobileMenuOpen ? 'active' : ''}`}
@@ -707,19 +720,10 @@ export default function Header() {
         )}
       </div>
 
-      {/* Mobile Drawer Backdrop (Overlay - covers screen below header) */}
+      {/* Mobile Drawer Navigation (Drops cleanly from header bottom, page remains fully scrollable with no blur) */}
       {mobileMenuOpen && (
         <div
-          onClick={() => setMobileMenuOpen(false)}
-          onTouchMove={(e) => e.preventDefault()}
-          className="mobile-drawer-backdrop"
-          aria-hidden="true"
-        />
-      )}
-
-      {/* Mobile Drawer Navigation (Drops cleanly from header bottom) */}
-      {mobileMenuOpen && (
-        <div
+          ref={mobileMenuRef}
           style={{
             position: 'absolute',
             top: '100%',
@@ -744,37 +748,6 @@ export default function Header() {
           }}
           className="mobile-drawer-menu"
         >
-          {/* Mobile Quote Cart Action Banner */}
-          <button
-            type="button"
-            onClick={() => {
-              setMobileMenuOpen(false);
-              openCart();
-            }}
-            style={{
-              width: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              padding: '12px 16px',
-              backgroundColor: 'var(--colors-band-blue)',
-              color: 'var(--colors-primary-deep)',
-              border: '1px solid rgba(0, 87, 210, 0.3)',
-              borderRadius: 'var(--rounded-md)',
-              fontWeight: 600,
-              fontSize: '14px',
-              cursor: 'pointer',
-              marginBottom: '6px'
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <ShoppingBag size={18} color="var(--colors-primary)" />
-              <span>Consolidated Quote Cart</span>
-            </div>
-            <span className="cart-bubble" style={{ minWidth: '22px', height: '22px', fontSize: '12px' }}>
-              {itemCount}
-            </span>
-          </button>
 
           {navLinks.map((link) => {
             if (link.label === 'Products') {
