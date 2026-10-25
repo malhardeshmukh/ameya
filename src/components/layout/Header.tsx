@@ -29,6 +29,8 @@ export default function Header() {
   const pathname = usePathname();
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const closeTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const headerRef = useRef<HTMLElement | null>(null);
+  const [headerHeight, setHeaderHeight] = useState(70);
 
   const navLinks = [
     { label: 'Overview', href: '/' },
@@ -63,14 +65,25 @@ export default function Header() {
 
   useEffect(() => {
     if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.classList.add('mobile-nav-open');
     } else {
-      document.body.style.overflow = '';
+      document.body.classList.remove('mobile-nav-open');
     }
     return () => {
-      document.body.style.overflow = '';
+      document.body.classList.remove('mobile-nav-open');
     };
   }, [mobileMenuOpen]);
+
+  useEffect(() => {
+    const updateHeaderHeight = () => {
+      if (headerRef.current) {
+        setHeaderHeight(headerRef.current.offsetHeight || 70);
+      }
+    };
+    updateHeaderHeight();
+    window.addEventListener('resize', updateHeaderHeight);
+    return () => window.removeEventListener('resize', updateHeaderHeight);
+  }, []);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -114,20 +127,21 @@ export default function Header() {
 
   return (
     <header
+      ref={headerRef}
       style={{
         position: 'sticky',
         top: 0,
-        zIndex: 500,
-        backgroundColor: 'rgba(255, 255, 255, 0.98)',
-        backdropFilter: 'blur(8px)',
-        WebkitBackdropFilter: 'blur(8px)',
+        zIndex: mobileMenuOpen ? 998 : 500,
+        backgroundColor: mobileMenuOpen ? '#ffffff' : 'rgba(255, 255, 255, 0.98)',
+        backdropFilter: mobileMenuOpen ? 'none' : 'blur(8px)',
+        WebkitBackdropFilter: mobileMenuOpen ? 'none' : 'blur(8px)',
         borderBottom: '1px solid var(--colors-border-subtle)',
-        boxShadow: isScrolled ? '0 4px 20px rgba(0, 0, 0, 0.08)' : 'none',
-        transition: 'box-shadow 0.2s ease',
+        boxShadow: mobileMenuOpen ? 'none' : (isScrolled ? '0 4px 20px rgba(0, 0, 0, 0.08)' : 'none'),
+        transition: 'box-shadow 0.2s ease, background-color 0.15s ease',
         width: '100%'
       }}
       id="main-enterprise-navbar"
-      className={`sticky-header ${isScrolled ? 'is-scrolled' : ''}`}
+      className={`sticky-header ${isScrolled ? 'is-scrolled' : ''} ${mobileMenuOpen ? 'menu-open' : ''}`}
     >
       <div
         className="container"
@@ -693,16 +707,17 @@ export default function Header() {
         )}
       </div>
 
-      {/* Mobile Drawer Backdrop (Overlay - does not push page content) */}
+      {/* Mobile Drawer Backdrop (Overlay - covers screen below header) */}
       {mobileMenuOpen && (
         <div
           onClick={() => setMobileMenuOpen(false)}
+          onTouchMove={(e) => e.preventDefault()}
           className="mobile-drawer-backdrop"
           aria-hidden="true"
         />
       )}
 
-      {/* Mobile Drawer Navigation (Positioned absolutely over page - zero downward push) */}
+      {/* Mobile Drawer Navigation (Drops cleanly from header bottom) */}
       {mobileMenuOpen && (
         <div
           style={{
@@ -711,18 +726,21 @@ export default function Header() {
             left: 0,
             right: 0,
             width: '100%',
-            backgroundColor: 'var(--colors-canvas)',
+            backgroundColor: '#ffffff',
             borderTop: '1px solid var(--colors-border-subtle)',
             borderBottom: '1px solid var(--colors-border-subtle)',
-            padding: '16px 20px 28px',
+            padding: '16px 20px',
+            paddingBottom: 'max(28px, calc(env(safe-area-inset-bottom, 0px) + 20px))',
             display: 'flex',
             flexDirection: 'column',
             gap: '10px',
-            boxShadow: '0 20px 48px rgba(0,0,0,0.18)',
-            maxHeight: 'calc(100dvh - 70px)',
+            boxShadow: '0 24px 48px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.08)',
+            maxHeight: `calc(100vh - ${headerHeight}px)`,
             overflowY: 'auto',
             WebkitOverflowScrolling: 'touch',
-            zIndex: 600
+            overscrollBehavior: 'contain',
+            touchAction: 'pan-y',
+            zIndex: 998
           }}
           className="mobile-drawer-menu"
         >
@@ -982,6 +1000,7 @@ export default function Header() {
           <div style={{ paddingTop: '8px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
             <a
               href={`tel:${COMPANY_DATA.phone}`}
+              onClick={() => setMobileMenuOpen(false)}
               style={{
                 display: 'flex',
                 alignItems: 'center',
